@@ -63,6 +63,7 @@ router.get('/government/test', function(req, res, next) {
     http.request(options, callback).end();
 });
 
+/* Test Tomcat Server */
 router.get('/tomcat/test', function(req, res, next) {
 
     var options = {
@@ -88,6 +89,66 @@ router.get('/tomcat/test', function(req, res, next) {
     };
 
     http.request(options, callback).end();
+});
+
+/* GET Merged SocialMedia n Government Profiles*/
+router.get('/search', function(req, res, next) {
+    async.parallel({
+        government: function(callback) {
+                var options = {
+                    host: 'localhost',
+                    port: 8080,
+                    path: '/FYPAsid/rest/UserService/user?name' + req.query.name,
+                    method: 'GET'
+                };
+
+                govCallback = function(response) {
+                    var govProfiles = '';
+
+                    //another chunk of data has been recieved, so append it to `str`
+                    response.on('data', function (profile) {
+                        govProfiles += profile;
+                    });
+
+                    //the whole response has been recieved, so we just print it out here
+                    response.on('end', function () {
+                        //console.log(govProfiles);
+                        callback(null, govProfiles );
+                    });
+                };
+
+                http.request(options, govCallback).end();
+        },
+        socialMedia: function(callback) {
+            var options = {
+                host: 'localhost',
+                port: 5000,
+                path: '/match?name' + req.query.name,
+                method: 'GET'
+            };
+
+            socialCallback = function(response) {
+                var socialProfiles = '';
+
+                //another chunk of data has been recieved, so append it to `str`
+                response.on('data', function (profile) {
+                    socialProfiles += profile;
+                });
+
+                //the whole response has been recieved, so we just print it out here
+                response.on('end', function () {
+                    //console.log(socialProfiles);
+                    callback(null, socialProfiles );
+                });
+            };
+
+            http.request(options, socialCallback).end();
+        }
+    }, function(err, results) {
+        if (err)
+            res.send(err);
+        res.send(results); // results is now equals to: {one: 'abc\n', two: 'xyz\n'}
+    });
 });
 
 
