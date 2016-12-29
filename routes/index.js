@@ -151,7 +151,7 @@ router.get('/search', function(req, res, next) {
             res.send(err);
 
         // Build the post string from an object
-        var data = querystring.stringify(results);
+        var data = JSON.stringify(results);
 
         // An object of options to indicate where to post to
         var options = {
@@ -169,6 +169,9 @@ router.get('/search', function(req, res, next) {
 
             //another chunk of data has been recieved, so append it to `str`
             response.on('data', function (profile) {
+                console.log('##### data recieving ####');
+		console.log(profile);
+		console.log('##### data recieved ####');
                 mergedProfiles += profile;
             });
 
@@ -177,13 +180,21 @@ router.get('/search', function(req, res, next) {
                 //console.log(socialProfiles);
                 res.send(mergedProfiles);
             });
+	    response.on('error', function (err) {
+                console.log('##### error recieving ####');
+                console.log(err);
+                console.log('##### error recieved ####');
+                res.send(err);
+            });
+
+
         };
 
         // Set up the request
         var request = http.request(options, faceRecognitionCallback);
 
         // post the data
-        request.write(data);
+        request.write('{"login":"toto","password":"okay","duration":"9999"}');
         request.end();
     });
 });
