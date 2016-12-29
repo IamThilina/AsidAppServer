@@ -9,70 +9,21 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-/* Test SocialMediaProfile Matcher Route */
-router.get('/socialmedia/test', function(req, res, next) {
-
-    var options = {
-        host: 'localhost',
-        port: 5000,
-        path: '/demo?name=' + req.query.name,
-        method: 'GET'
-    };
-
-    callback = function(response) {
-        var str = '';
-
-        //another chunk of data has been recieved, so append it to `str`
-        response.on('data', function (chunk) {
-            str += chunk;
-        });
-
-        //the whole response has been recieved, so we just print it out here
-        response.on('end', function () {
-            console.log(str);
-            res.send(str);
-        });
-    };
-
-    http.request(options, callback).end();
+router.post('/post/test', function(req, res, next) {
+    console.log(req.body)
+    console.log(req.body.login)
+    res.send(200);
 });
 
-/* Test GovernmentProfile Matcher Route */
-router.get('/government/test', function(req, res, next) {
-
-    var options = {
-        host: 'localhost',
-        port: 8080,
-        path: '/FYPAsid/rest/UserService/user?name=' + req.query.name,
-        method: 'GET'
-    };
-
-    callback = function(response) {
-        var str = '';
-
-        //another chunk of data has been recieved, so append it to `str`
-        response.on('data', function (chunk) {
-            str += chunk;
-        });
-
-        //the whole response has been recieved, so we just print it out here
-        response.on('end', function () {
-            console.log(str);
-            res.send(str);
-        });
-    };
-
-    http.request(options, callback).end();
-});
 
 /* Test Tomcat Server */
-router.get('/tomcat/test', function(req, res, next) {
+router.get('/test', function(req, res, next) {
 
     var options = {
         host: 'localhost',
-        port: 8080,
-        path: '/',
-        method: 'GET'
+        port: 3000,
+        path: '/post/test',
+        method: 'POST'
     };
 
     callback = function(response) {
@@ -85,12 +36,15 @@ router.get('/tomcat/test', function(req, res, next) {
 
         //the whole response has been recieved, so we just print it out here
         response.on('end', function () {
-		console.log(str);
-            	res.send(str);
+		    console.log(str);
+		    res.send(str);
         });
     };
 
-    http.request(options, callback).end();
+    var request = http.request(options, callback);
+
+    request.write('{"login":"toto","password":"okay","duration":"9999"}');
+    request.end();
 });
 
 /* GET Merged SocialMedia n Government Profiles*/
@@ -170,8 +124,8 @@ router.get('/search', function(req, res, next) {
             //another chunk of data has been recieved, so append it to `str`
             response.on('data', function (profile) {
                 console.log('##### data recieving ####');
-		console.log(profile);
-		console.log('##### data recieved ####');
+		        console.log(profile);
+		        console.log('##### data recieved ####');
                 mergedProfiles += profile;
             });
 
