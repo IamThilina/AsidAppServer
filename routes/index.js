@@ -1,6 +1,7 @@
 var express = require('express');
 var http = require('http');
 var router = express.Router();
+var async = require('async');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -41,7 +42,7 @@ router.get('/government/test', function(req, res, next) {
     var options = {
         host: 'localhost',
         port: 8080,
-        path: '/FYPAsid/rest/UserService/user?name' + req.query.name,
+        path: '/FYPAsid/rest/UserService/user?name=' + req.query.name,
         method: 'GET'
     };
 
@@ -98,7 +99,7 @@ router.get('/search', function(req, res, next) {
                 var options = {
                     host: 'localhost',
                     port: 8080,
-                    path: '/FYPAsid/rest/UserService/user?name' + req.query.name,
+                    path: '/FYPAsid/rest/UserService/user?name=' + req.query.name,
                     method: 'GET'
                 };
 
@@ -123,7 +124,7 @@ router.get('/search', function(req, res, next) {
             var options = {
                 host: 'localhost',
                 port: 5000,
-                path: '/match?name' + req.query.name,
+                path: '/match?name=' + req.query.name,
                 method: 'GET'
             };
 
