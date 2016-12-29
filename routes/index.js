@@ -2,6 +2,7 @@ var express = require('express');
 var http = require('http');
 var router = express.Router();
 var async = require('async');
+var querystring = require('querystring');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -148,7 +149,42 @@ router.get('/search', function(req, res, next) {
     }, function(err, results) {
         if (err)
             res.send(err);
-        res.send(results); // results is now equals to: {one: 'abc\n', two: 'xyz\n'}
+
+        // Build the post string from an object
+        var data = querystring.stringify(results);
+
+        // An object of options to indicate where to post to
+        var options = {
+            hostname: 'localhost',
+            port: 4000,
+            path: '/test/socialmedia/data',
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        };
+
+        faceRecognitionCallback = function(response) {
+            var mergedProfiles = '';
+
+            //another chunk of data has been recieved, so append it to `str`
+            response.on('data', function (profile) {
+                mergedProfiles += profile;
+            });
+
+            //the whole response has been recieved, so we just print it out here
+            response.on('end', function () {
+                //console.log(socialProfiles);
+                res.send(mergedProfiles);
+            });
+        };
+
+        // Set up the request
+        var request = http.request(options, faceRecognitionCallback);
+
+        // post the data
+        request.write(data);
+        request.end();
     });
 });
 
