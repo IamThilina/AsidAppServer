@@ -99,7 +99,7 @@ router.get('/search', function(req, res, next) {
 
         request({  // calling face recognition system
             method: 'POST',
-            url: "http://localhost:4000/test/socialmedia/data",
+            url: "http://localhost:4000/facerecognizer/merge",
             json: true,
             body: results,
             headers: {
@@ -110,8 +110,9 @@ router.get('/search', function(req, res, next) {
             if (error)
                 console.log(error);
             else{
-                console.log(response);
-                console.log(body);
+                //console.log(response);
+                //console.log(body);
+		res.json(response.body);
             }
         }); //end of request
     });
