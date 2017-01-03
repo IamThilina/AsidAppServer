@@ -1,5 +1,6 @@
 var express = require('express');
 var http = require('http');
+var request = require('request');
 var router = express.Router();
 var async = require('async');
 var querystring = require('querystring');
@@ -11,7 +12,7 @@ router.get('/', function(req, res, next) {
 
 router.post('/post/test', function(req, res, next) {
     console.log(req.body)
-    console.log(req.body.login)
+    console.log(req.body.name)
     res.send(200);
 });
 
@@ -19,11 +20,14 @@ router.post('/post/test', function(req, res, next) {
 /* Test Tomcat Server */
 router.get('/test', function(req, res, next) {
 
-    var options = {
+    /*var options = {
         host: 'localhost',
-        port: 3000,
+        port: 4000,
         path: '/post/test',
-        method: 'POST'
+        method: 'POST',
+	/*headers: {
+                'Content-Type': 'application/json',
+            
     };
 
     callback = function(response) {
@@ -43,8 +47,29 @@ router.get('/test', function(req, res, next) {
 
     var request = http.request(options, callback);
 
-    request.write('{"login":"toto","password":"okay","duration":"9999"}');
-    request.end();
+   // request.write('{"login":"toto","password":"okay","duration":"9999"}');
+    request.write('{"name":"asanka"}');
+	request.end(); */
+
+request({
+    method: 'POST',
+    url: "http://localhost:4000/post/test",
+    //body: '{"foo": "bar"}',
+    json: true,
+    body: {"foo": "bar"},
+    headers: {
+                'Content-Type': 'application/json',
+            }
+
+}, (error, response, body) => {
+    if (error)
+	console.log(error);
+    else{
+      console.log(response);
+      console.log(body);
+    }
+}); //end of request
+
 });
 
 /* GET Merged SocialMedia n Government Profiles*/
@@ -105,7 +130,7 @@ router.get('/search', function(req, res, next) {
             res.send(err);
 
         // Build the post string from an object
-        var data = JSON.stringify(results);
+       // var data = JSON.stringify(results);
 
         // An object of options to indicate where to post to
         var options = {
