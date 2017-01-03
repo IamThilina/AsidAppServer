@@ -17,58 +17,26 @@ router.post('/post/test', function(req, res, next) {
 });
 
 
-/* Test Tomcat Server */
+/* Test FaceRecognition Server */
 router.get('/test', function(req, res, next) {
 
-    /*var options = {
-        host: 'localhost',
-        port: 4000,
-        path: '/post/test',
+    request({
         method: 'POST',
-	/*headers: {
-                'Content-Type': 'application/json',
-            
-    };
+        url: "http://localhost:4000/post/test",
+        json: true,
+        body: {foo: "bar"},
+        headers: {
+            'Content-Type': 'application/json',
+        }
 
-    callback = function(response) {
-        var str = '';
-
-        //another chunk of data has been recieved, so append it to `str`
-        response.on('data', function (chunk) {
-            str += chunk;
-        });
-
-        //the whole response has been recieved, so we just print it out here
-        response.on('end', function () {
-		    console.log(str);
-		    res.send(str);
-        });
-    };
-
-    var request = http.request(options, callback);
-
-   // request.write('{"login":"toto","password":"okay","duration":"9999"}');
-    request.write('{"name":"asanka"}');
-	request.end(); */
-
-request({
-    method: 'POST',
-    url: "http://localhost:4000/post/test",
-    //body: '{"foo": "bar"}',
-    json: true,
-    body: {"foo": "bar"},
-    headers: {
-                'Content-Type': 'application/json',
-            }
-
-}, (error, response, body) => {
-    if (error)
-	console.log(error);
-    else{
-      console.log(response);
-      console.log(body);
-    }
-}); //end of request
+    }, (error, response, body) => {
+        if (error)
+            console.log(error);
+        else{
+          console.log(response);
+          console.log(body);
+        }
+    }); //end of request
 
 });
 
@@ -125,56 +93,27 @@ router.get('/search', function(req, res, next) {
 
             http.request(options, socialCallback).end();
         }
-    }, function(err, results) {
+    }, function(err, results) {  // after matching social media and and government profiles
         if (err)
             res.send(err);
 
-        // Build the post string from an object
-       // var data = JSON.stringify(results);
-
-        // An object of options to indicate where to post to
-        var options = {
-            hostname: 'localhost',
-            port: 4000,
-            path: '/test/socialmedia/data',
+        request({  // calling face recognition system
             method: 'POST',
+            url: "http://localhost:4000/test/socialmedia/data",
+            json: true,
+            body: results,
             headers: {
                 'Content-Type': 'application/json',
             }
-        };
 
-        faceRecognitionCallback = function(response) {
-            var mergedProfiles = '';
-
-            //another chunk of data has been recieved, so append it to `str`
-            response.on('data', function (profile) {
-                console.log('##### data recieving ####');
-		        console.log(profile);
-		        console.log('##### data recieved ####');
-                mergedProfiles += profile;
-            });
-
-            //the whole response has been recieved, so we just print it out here
-            response.on('end', function () {
-                //console.log(socialProfiles);
-                res.send(mergedProfiles);
-            });
-	    response.on('error', function (err) {
-                console.log('##### error recieving ####');
-                console.log(err);
-                console.log('##### error recieved ####');
-                res.send(err);
-            });
-
-
-        };
-
-        // Set up the request
-        var request = http.request(options, faceRecognitionCallback);
-
-        // post the data
-        request.write('{"login":"toto","password":"okay","duration":"9999"}');
-        request.end();
+        }, (error, response, body) => {
+            if (error)
+                console.log(error);
+            else{
+                console.log(response);
+                console.log(body);
+            }
+        }); //end of request
     });
 });
 
