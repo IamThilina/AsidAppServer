@@ -1,2 +1,65 @@
-<h2>Profile template</h2>
-<h2>{{profile.name}}</h2>
+<div class="container">
+
+    <div class="col-md-6 text-center">
+        <img class="profile-picture-holder" [src]="profile.profile_picture" alt="" width="200" height="200">
+    </div>
+    <div class="col-md-6 text-center name-holder">
+        <h2>{{profile.name}}</h2>
+    </div>
+    <div class="col-md-6">
+        <div class="data-attribute-holder">
+            <h4>Civil Status</h4>
+            <span>{{profile["Civil Status"]}}</span>
+        </div>
+        <div class="data-attribute-holder">
+            <h4>Date Of Birth</h4>
+            <span>{{profile["Date Of birth"]}}</span>
+        </div>
+        <div class="data-attribute-holder">
+            <h4>District</h4>
+            <span>{{profile["District"]}}</span>
+        </div>
+        <div class="data-attribute-holder">
+            <h4>E-mail</h4>
+            <span>{{profile["E-mail"]}}</span>
+        </div>
+        <div class="data-attribute-holder">
+            <h4>Schools</h4>
+            <div *ngFor="let school of profile.education">
+                <p>{{school.school}}</p>
+                <p>{{school.details}}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="data-attribute-holder">
+            <h4>NIC</h4>
+            <span>{{profile["ID"]}}</span>
+        </div>
+        <div class="data-attribute-holder">
+            <h4>Place Of Birth</h4>
+            <span>{{profile["place of birth"]}}</span>
+        </div>
+        <div class="data-attribute-holder">
+            <h4>Address</h4>
+            <span>No {{profile["Number of the house"]}},{{profile["village or city"]}},{{profile["District"]}}</span>
+        </div>
+        <div class="data-attribute-holder">
+            <h4>Telephone</h4>
+            <span>{{profile["telephone"]}}</span>
+        </div>
+        <div class="data-attribute-holder">
+            <h4>Companies</h4>
+            <div *ngFor="let company of profile.work">
+                <p>{{company.work}}</p>
+                <p>{{company.details}}</p>
+            </div>
+        </div>
+        <div class="data-attribute-holder">
+            <h4>Languages</h4>
+            <div *ngFor="let language of profile.languages">
+                <p>{{language}}</p>
+            </div>
+        </div>
+    </div>
+</div>

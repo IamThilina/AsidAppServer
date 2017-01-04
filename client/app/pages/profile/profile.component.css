@@ -1,0 +1,16 @@
+.data-attribute-holder{
+    border: 2px solid #9C27B0;
+    border-radius: 10px;
+    padding: 15px 20px;
+    margin: 10px;
+}
+
+.profile-picture-holder{
+    border: 5px double purple;
+    padding: 10px;
+}
+
+.name-holder{
+    height: 200px;
+    margin-top: 25px;
+}
