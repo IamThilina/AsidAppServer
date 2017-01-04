@@ -1,0 +1,40 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-offset-3 col-md-6">
+            <div class="card form-container">
+                <form #searchForm="ngForm" (ngSubmit)="onSubmit(searchForm.value)">
+                    <!--name-->
+                    <div class="input-group">
+								<span class="input-group-addon">
+									<i class="material-icons form-icons">person</i>
+								</span>
+                        <div class="form-group is-empty"><input type="text" class="form-control" placeholder="What's his name ?" name="name" ngModel><span class="material-input"></span></div>
+                    </div>
+                    <!--school-->
+                    <div class="input-group">
+								<span class="input-group-addon">
+									<i class="material-icons form-icons">school</i>
+								</span>
+                        <div class="form-group is-empty"><input type="text" class="form-control" placeholder="What was his school ?" name="school" ngModel><span class="material-input"></span></div>
+                    </div>
+                    <!--work-place-->
+                    <div class="input-group">
+								<span class="input-group-addon">
+									<i class="material-icons form-icons">work</i>
+								</span>
+                        <div class="form-group is-empty"><input type="text" class="form-control" placeholder="Where is he working ?" name="workPlace" ngModel><span class="material-input"></span></div>
+                    </div>
+                    <!--city-->
+                    <div class="input-group">
+								<span class="input-group-addon">
+									<i class="material-icons form-icons">location_on</i>
+								</span>
+                        <div class="form-group is-empty"><input type="text" class="form-control" placeholder="Where is he living ?" name="city" ngModel><span class="material-input"></span></div>
+                    </div>
+                    <!--submit-->
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

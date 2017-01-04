@@ -7,7 +7,7 @@ var querystring = require('querystring');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+    res.render('index.html');
 });
 
 router.post('/post/test', function(req, res, next) {
@@ -16,6 +16,16 @@ router.post('/post/test', function(req, res, next) {
     res.send(200);
 });
 
+
+router.post('/find', function(req, res, next) {
+    const aggregatedResults = {
+      name: "Asanka",
+      city: "Bandaragama"
+    };
+    const user = req.body.user;
+    console.log(user.name);
+    res.json(aggregatedResults);
+});
 
 /* Test FaceRecognition Server */
 router.get('/test', function(req, res, next) {
@@ -112,7 +122,7 @@ router.get('/search', function(req, res, next) {
             else{
                 //console.log(response);
                 //console.log(body);
-		res.json(response.body);
+		        res.json(response.body);
             }
         }); //end of request
     });
