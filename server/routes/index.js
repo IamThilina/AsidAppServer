@@ -1,4 +1,4 @@
-var express = require('express');
+																																																			var express = require('express');
 var http = require('http');
 var request = require('request');
 var router = express.Router();
@@ -110,13 +110,13 @@ router.get('/test', function(req, res, next) {
 });
 
 /* GET Merged SocialMedia n Government Profiles*/
-router.get('/search', function(req, res, next) {
+router.post('/search', function(req, res, next) {
     async.parallel({
         government: function(callback) {
                 var options = {
                     host: 'localhost',
                     port: 8080,
-                    path: '/FYPAsid/rest/UserService/user?town=colomb0&choice=g&name=' + req.query.name,
+                    path: '/FYPAsid/rest/UserService/user?town=colomb0&choice=g&name=' + req.body.user.name,
                     method: 'GET'
                 };
 
@@ -141,7 +141,7 @@ router.get('/search', function(req, res, next) {
             var options = {
                 host: 'localhost',
                 port: 5000,
-                path: '/match?name=' + req.query.name,
+                path: '/match?name=' + req.body.user.name,
                 method: 'GET'
             };
 
@@ -166,6 +166,7 @@ router.get('/search', function(req, res, next) {
         if (err)
             res.send(err);
 
+console.log("RESULTS FROM GOV n SOCIAL RECIEVED")
         request({  // calling face recognition system
             method: 'POST',
             url: "http://localhost:4000/facerecognizer/merge",
@@ -176,24 +177,33 @@ router.get('/search', function(req, res, next) {
             }
 
         }, (error, mergedProfiles, body) => {
-            if (error)
+            if (error){
+console.log("ERROR AT FACERECOGNITION")
                 console.log(error);
+}
             else{
+console.log("RESPONSE FROM FACERECOGNITION");
+                //console.log(JSON.stringify(mergedProfiles.body));
+
                 request({  // calling aggregation system
             method: 'POST',
             url: "http://localhost:8080/FYPAsid/rest/UserService/aggregation",
-            json: true,
             body: mergedProfiles.body,
-            headers: {
+json: true,
+            //body: JSON.stringify(mergedProfiles.body),
+            //body: "#########################################################hello !!!!!!!!",          
+  headers: {
                 'Content-Type': 'application/json',
             }
 
         }, (error, profiles, body) => {
-            if (error)
+            if (error){
+console.log("ERROR ATAGGREGATION")
                 console.log(error);
+}
             else{
-                //console.log(response);
-                //console.log(body);
+                console.log("RESPONSE FROM AGGREGATION");
+                console.log(profiles.body);
                         res.json(profiles.body);
             }
  // end of aggreation 
