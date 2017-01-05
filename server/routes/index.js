@@ -116,7 +116,7 @@ router.get('/search', function(req, res, next) {
                 var options = {
                     host: 'localhost',
                     port: 8080,
-                    path: '/FYPAsid/rest/UserService/user?name=' + req.query.name,
+                    path: '/FYPAsid/rest/UserService/user?town=colomb0&choice=g&name=' + req.query.name,
                     method: 'GET'
                 };
 
@@ -175,15 +175,29 @@ router.get('/search', function(req, res, next) {
                 'Content-Type': 'application/json',
             }
 
-        }, (error, response, body) => {
+        }, (error, mergedProfiles, body) => {
+            if (error)
+                console.log(error);
+            else{
+                request({  // calling aggregation system
+            method: 'POST',
+            url: "http://localhost:8080/FYPAsid/rest/UserService/aggregation",
+            json: true,
+            body: mergedProfiles.body,
+            headers: {
+                'Content-Type': 'application/json',
+            }
+
+        }, (error, profiles, body) => {
             if (error)
                 console.log(error);
             else{
                 //console.log(response);
                 //console.log(body);
-		        res.json(response.body);
+                        res.json(profiles.body);
             }
-        }); //end of request
+ // end of aggreation }
+        }); //end of facerecognition
     });
 });
 
