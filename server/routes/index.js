@@ -196,7 +196,9 @@ router.get('/search', function(req, res, next) {
                 //console.log(body);
                         res.json(profiles.body);
             }
- // end of aggreation }
+ // end of aggreation 
+           });
+        }
         }); //end of facerecognition
     });
 });

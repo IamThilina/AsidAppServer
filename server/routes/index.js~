@@ -112,32 +112,32 @@ router.get('/test', function(req, res, next) {
 /* GET Merged SocialMedia n Government Profiles*/
 router.get('/search', function(req, res, next) {
     async.parallel({
-        government: function (callback) {
-            var options = {
-                host: 'localhost',
-                port: 8080,
-                path: '/FYPAsid/rest/UserService/user?town=colomb0&choice=g&name=' + req.query.name,
-                method: 'GET'
-            };
+        government: function(callback) {
+                var options = {
+                    host: 'localhost',
+                    port: 8080,
+                    path: '/FYPAsid/rest/UserService/user?town=colomb0&choice=g&name=' + req.query.name,
+                    method: 'GET'
+                };
 
-            govCallback = function (response) {
-                var govProfiles = '';
+                govCallback = function(response) {
+                    var govProfiles = '';
 
-                //another chunk of data has been recieved, so append it to `str`
-                response.on('data', function (profile) {
-                    govProfiles += profile;
-                });
+                    //another chunk of data has been recieved, so append it to `str`
+                    response.on('data', function (profile) {
+                        govProfiles += profile;
+                    });
 
-                //the whole response has been recieved, so we just print it out here
-                response.on('end', function () {
-                    //console.log(govProfiles);
-                    callback(null, govProfiles);
-                });
-            };
+                    //the whole response has been recieved, so we just print it out here
+                    response.on('end', function () {
+                        //console.log(govProfiles);
+                        callback(null, govProfiles );
+                    });
+                };
 
-            http.request(options, govCallback).end();
+                http.request(options, govCallback).end();
         },
-        socialMedia: function (callback) {
+        socialMedia: function(callback) {
             var options = {
                 host: 'localhost',
                 port: 5000,
@@ -145,7 +145,7 @@ router.get('/search', function(req, res, next) {
                 method: 'GET'
             };
 
-            socialCallback = function (response) {
+            socialCallback = function(response) {
                 var socialProfiles = '';
 
                 //another chunk of data has been recieved, so append it to `str`
@@ -156,13 +156,13 @@ router.get('/search', function(req, res, next) {
                 //the whole response has been recieved, so we just print it out here
                 response.on('end', function () {
                     //console.log(socialProfiles);
-                    callback(null, socialProfiles);
+                    callback(null, socialProfiles );
                 });
             };
 
             http.request(options, socialCallback).end();
         }
-    }, function (err, results) {  // after matching social media and and government profiles
+    }, function(err, results) {  // after matching social media and and government profiles
         if (err)
             res.send(err);
 
@@ -172,34 +172,33 @@ router.get('/search', function(req, res, next) {
             json: true,
             body: results,
             headers: {
-                'Content-Type': 'application/json',//http://localhost:8080/FYPAsid/rest/UserService/aggregation
+                'Content-Type': 'application/json',
             }
 
-        }, (error, mergedProfiles, body) = > {
+        }, (error, mergedProfiles, body) => {
             if (error)
-            console.log(error);
-            else
-            {
-                request({  // calling face recognition system
-                method: 'POST',
-                url: "http://localhost:8080/FYPAsid/rest/UserService/aggregation",
-                json: true,
-                body: results,
-                headers: {
-                    'Content-Type': 'application/json',//
-                }
-
-                }, (error, aggregatedProfies, body) = > {
-                    if (error)
-                    console.log(error);
-                    else
-                    {
-                        res.json(aggregated.body);
-                    }
-                }); // end of aggregation
+                console.log(error);
+            else{
+                request({  // calling aggregation system
+            method: 'POST',
+            url: "http://localhost:8080/FYPAsid/rest/UserService/aggregation",
+            json: true,
+            body: mergedProfiles.body,
+            headers: {
+                'Content-Type': 'application/json',
             }
-        }); // end of facerecognition
-    });  // end of searching
+
+        }, (error, profiles, body) => {
+            if (error)
+                console.log(error);
+            else{
+                //console.log(response);
+                //console.log(body);
+                        res.json(profiles.body);
+            }
+ // end of aggreation }
+        }); //end of facerecognition
+    });
 });
 
 
