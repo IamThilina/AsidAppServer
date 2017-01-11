@@ -195,8 +195,8 @@ router.post('/search', function(req, res, next) {
 			console.log("ERROR ATAGGREGATION")
                	        console.log(error);	
 		 } else{
-                	console.log("RESPONSE FROM AGGREGATION");
-                	console.log(profiles.body);
+                	//console.log("RESPONSE FROM AGGREGATION");
+                	//console.log(profiles.body);
                         res.json(profiles.body);
            	 }
  // end of aggreation 
