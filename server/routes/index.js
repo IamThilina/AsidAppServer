@@ -166,7 +166,6 @@ router.post('/search', function(req, res, next) {
         if (err)
             res.send(err);
 
-console.log("RESULTS FROM GOV n SOCIAL RECIEVED")
         request({  // calling face recognition system
             method: 'POST',
             url: "http://localhost:4000/facerecognizer/merge",
@@ -178,34 +177,28 @@ console.log("RESULTS FROM GOV n SOCIAL RECIEVED")
 
         }, (error, mergedProfiles, body) => {
             if (error){
-console.log("ERROR AT FACERECOGNITION")
+		console.log("ERROR AT FACERECOGNITION")
                 console.log(error);
-}
+	    }
             else{
-console.log("RESPONSE FROM FACERECOGNITION");
-                //console.log(JSON.stringify(mergedProfiles.body));
-
                 request({  // calling aggregation system
-            method: 'POST',
-            url: "http://localhost:8080/FYPAsid/rest/UserService/aggregation",
-            body: mergedProfiles.body,
-json: true,
-            //body: JSON.stringify(mergedProfiles.body),
-            //body: "#########################################################hello !!!!!!!!",          
-  headers: {
-                'Content-Type': 'application/json',
-            }
+            		method: 'POST',
+           		url: "http://localhost:8080/FYPAsid/rest/UserService/aggregation",
+            		body: mergedProfiles.body,
+			json: true,
+      		        headers: {
+              		  'Content-Type': 'application/json',
+            		}
 
-        }, (error, profiles, body) => {
-            if (error){
-console.log("ERROR ATAGGREGATION")
-                console.log(error);
-}
-            else{
-                console.log("RESPONSE FROM AGGREGATION");
-                console.log(profiles.body);
+   	       }, (error, profiles, body) => {
+          	  if (error){
+			console.log("ERROR ATAGGREGATION")
+               	        console.log(error);	
+		 } else{
+                	console.log("RESPONSE FROM AGGREGATION");
+                	console.log(profiles.body);
                         res.json(profiles.body);
-            }
+           	 }
  // end of aggreation 
            });
         }

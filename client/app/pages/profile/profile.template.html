@@ -1,27 +1,27 @@
 <div class="container">
 
     <div class="col-md-6 text-center">
-        <img class="profile-picture-holder" [src]="profile.profile_picture" alt="" width="200" height="200">
+        <img class="profile-picture-holder" [sr]c="{{profile['profiles'][0]['socialMedia']['facebook']['profile_picture']}}" alt="" width="200" height="200">
     </div>
     <div class="col-md-6 text-center name-holder">
-        <h2>{{profile["Aggregated Names"]}}</h2>
+        <h2>{{profile["Aggregated Names"][0]}}</h2>
     </div>
     <div class="col-md-6">
         <div class="data-attribute-holder">
             <h4>Civil Status</h4>
-            <span>{{profile["profiles"]["government"]["NIC data"]["Civil Status"]}}</span>
+            <span>{{profile["profiles"][0]["government"]["NIC data"]["Civil Status"]}}</span>
         </div>
         <div class="data-attribute-holder">
             <h4>Date Of Birth</h4>
-            <span>{{profile["profiles"]["government"]["NIC data"]["Date Of birth"]}}</span>
+            <span>{{profile["profiles"][0]["government"]["NIC data"]["Date Of birth"]}}</span>
         </div>
         <div class="data-attribute-holder">
             <h4>District</h4>
-            <span>{{profile["profiles"]["government"]["NIC data"]["District"]}}</span>
+            <span>{{profile["profiles"][0]["government"]["NIC data"]["District"]}}</span>
         </div>
         <div class="data-attribute-holder">
             <h4>E-mail</h4>
-            <span>{{profile["profiles"]["government"]["NIC data"]["E-mail"]}}</span>
+            <span>{{profile["profiles"][0]["government"]["NIC data"]["E-mail"]}}</span>
         </div>
         <div class="data-attribute-holder">
             <h4>Schools</h4>
@@ -33,19 +33,19 @@
     <div class="col-md-6">
         <div class="data-attribute-holder">
             <h4>NIC</h4>
-            <span>{{profile["profiles"]["government"]["NIC data"]["ID"]}}</span>
+            <span>{{profile["profiles"][0]["government"]["NIC data"]["ID"]}}</span>
         </div>
         <div class="data-attribute-holder">
             <h4>Place Of Birth</h4>
-            <span>{{profil["profiles"]["government"]["NIC data"]["place of birth"]}}</span>
+            <span>{{profile["profiles"][0]["government"]["NIC data"]["place of birth"]}}</span>
         </div>
         <div class="data-attribute-holder">
             <h4>Address</h4>
-            <span>No {{profile["profiles"]["government"]["NIC data"]["Number of the house"]}},{{profile["government"]["NIC data"]["village or city"]}},{{profile["government"]["NIC data"]["District"]}}</span>
+            <span>No {{profile["profiles"][0]["government"]["NIC data"]["Number of the house"]}},{{profile["profiles"][0]["government"]["NIC data"]["village or city"]}},{{profile["profiles"][0]["government"]["NIC data"]["District"]}}</span>
         </div>
         <div class="data-attribute-holder">
             <h4>Telephone</h4>
-            <span>{{profile["profile"]["government"]["NIC data"]["telephone"]}}</span>
+            <span>{{profile["profiles"][0]["government"]["NIC data"]["telephone"]}}</span>
         </div>
         <div class="data-attribute-holder">
             <h4>Companies</h4>
@@ -55,7 +55,7 @@
         </div>
         <div class="data-attribute-holder">
             <h4>Languages</h4>
-            <div *ngFor="let language of profile['profiles']['socialMedia']['linkedIn']['languages']">
+ 	    <div *ngFor="let language of profile['profiles'][0]['socialMedia']['linkedIn']['languages']">
                 <p>{{language}}</p>
             </div>
         </div>
