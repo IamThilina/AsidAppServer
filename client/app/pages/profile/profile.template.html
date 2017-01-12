@@ -1,63 +1,93 @@
-<div class="container">
+<div class="container profile-container">
 
-    <div class="col-md-6 text-center">
+    <div class="col-md-6 text-left">
         <img class="profile-picture-holder" [src]="profile['profiles'][0]['socialMedia']['facebook']['profile_picture']" alt="" width="200" height="200">
+        <div class="social-media-links">
+            <a [href]="profile['profiles'][0]['socialMedia']['facebook']['facebook']"><span class="fa fa-facebook-square"></span></a>
+            <a [href]="profile['profiles'][0]['socialMedia']['linkedIn']['linkedin']"><span class="fa fa-linkedin-square"></span></a>
+        </div>
     </div>
-    <div class="col-md-6 text-center name-holder">
+    <div class="col-md-6 text-left name-holder">
         <h2>{{profile["Aggregated Names"][0]}}</h2>
     </div>
-    <div class="col-md-6">
-        <div class="data-attribute-holder">
-            <h4>Civil Status</h4>
-            <span>{{profile["profiles"][0]["government"]["NIC data"]["Civil Status"]}}</span>
+    <!--personal profile-->
+    <h2 class="section-header">
+        <span class="fa fa-user"></span>
+        &nbsp;&nbsp;Personal Profile
+    </h2>
+    <div class="col-md-12">
+        <div class="col-md-4">
+            <div class="data-attribute-holder">
+                <h4>Civil Status</h4>
+                <span>{{profile["profiles"][0]["government"]["NIC data"]["Civil Status"]}}</span>
+            </div>
+            <div class="data-attribute-holder">
+                <h4>Date Of Birth</h4>
+                <span>{{profile["profiles"][0]["government"]["NIC data"]["Date Of birth"]}}</span>
+            </div>
+            <div class="data-attribute-holder">
+                <h4>District</h4>
+                <span>{{profile["profiles"][0]["government"]["NIC data"]["District"]}}</span>
+            </div>
         </div>
-        <div class="data-attribute-holder">
-            <h4>Date Of Birth</h4>
-            <span>{{profile["profiles"][0]["government"]["NIC data"]["Date Of birth"]}}</span>
+        <div class="col-md-4">
+            <div class="data-attribute-holder">
+                <h4>NIC</h4>
+                <span>{{profile["profiles"][0]["government"]["NIC data"]["ID"]}}</span>
+            </div>
+            <div class="data-attribute-holder">
+                <h4>Place Of Birth</h4>
+                <span>{{profile["profiles"][0]["government"]["NIC data"]["place of birth"]}}</span>
+            </div>
+            <div class="data-attribute-holder">
+                <h4>E-mail</h4>
+                <span>{{profile["profiles"][0]["government"]["NIC data"]["E-mail"]}}</span>
+            </div>
         </div>
-        <div class="data-attribute-holder">
-            <h4>District</h4>
-            <span>{{profile["profiles"][0]["government"]["NIC data"]["District"]}}</span>
-        </div>
-        <div class="data-attribute-holder">
-            <h4>E-mail</h4>
-            <span>{{profile["profiles"][0]["government"]["NIC data"]["E-mail"]}}</span>
-        </div>
-        <div class="data-attribute-holder">
-            <h4>Schools</h4>
-            <div *ngFor="let school of profile['Aggregated Education']">
-                <p>{{school}}</p>
+        <div class="col-md-4">
+            <div class="data-attribute-holder">
+                <h4>Address</h4>
+                <span>No {{profile["profiles"][0]["government"]["NIC data"]["Number of the house"]}},{{profile["profiles"][0]["government"]["NIC data"]["village or city"]}},{{profile["profiles"][0]["government"]["NIC data"]["District"]}}</span>
+            </div>
+            <div class="data-attribute-holder">
+                <h4>Telephone</h4>
+                <span>{{profile["profiles"][0]["government"]["NIC data"]["telephone"]}}</span>
             </div>
         </div>
     </div>
+
+    <div class="col-md-12">
+
+    </div>
+
     <div class="col-md-6">
+        <!--school life-->
+        <h2 class="section-header">
+            <span class="fa fa-book"></span>
+            &nbsp;&nbsp;School Life
+        </h2>
         <div class="data-attribute-holder">
-            <h4>NIC</h4>
-            <span>{{profile["profiles"][0]["government"]["NIC data"]["ID"]}}</span>
+            <span *ngFor="let school of profile['Aggregated Education']">{{school}}</span>
         </div>
+    </div>
+    <div class="col-md-6">
+        <!--professional career-->
+        <h2 class="section-header">
+            <span class="fa fa-book"></span>
+            &nbsp;&nbsp;Professional Career
+        </h2>
         <div class="data-attribute-holder">
-            <h4>Place Of Birth</h4>
-            <span>{{profile["profiles"][0]["government"]["NIC data"]["place of birth"]}}</span>
+            <span *ngFor="let company of profile['Aggregated Work']">{{company}}</span>
         </div>
+    </div>
+    <!--languages-->
+    <h2 class="section-header">
+        <span class="fa fa-language"></span>
+        &nbsp;&nbsp;Languages
+    </h2>
+    <div class="col-md-12">
         <div class="data-attribute-holder">
-            <h4>Address</h4>
-            <span>No {{profile["profiles"][0]["government"]["NIC data"]["Number of the house"]}},{{profile["profiles"][0]["government"]["NIC data"]["village or city"]}},{{profile["profiles"][0]["government"]["NIC data"]["District"]}}</span>
-        </div>
-        <div class="data-attribute-holder">
-            <h4>Telephone</h4>
-            <span>{{profile["profiles"][0]["government"]["NIC data"]["telephone"]}}</span>
-        </div>
-        <div class="data-attribute-holder">
-            <h4>Companies</h4>
-            <div *ngFor="let company of profile['Aggregated Work']">
-                <p>{{company}}</p>
-            </div>
-        </div>
-        <div class="data-attribute-holder">
-            <h4>Languages</h4>
- 	    <div *ngFor="let language of profile['profiles'][0]['socialMedia']['linkedIn']['languages']">
-                <p>{{language}}</p>
-            </div>
+            <span *ngFor="let language of profile['profiles'][0]['socialMedia']['linkedIn']['languages']">{{language}}</span>
         </div>
     </div>
 </div>

@@ -1,16 +1,50 @@
+.profile-container{
+    padding: 20px 0;
+    background: white;
+}
+
 .data-attribute-holder{
-    border: 2px solid #9C27B0;
-    border-radius: 10px;
     padding: 15px 20px;
     margin: 10px;
+    height: 100px;
 }
 
 .profile-picture-holder{
-    border: 5px double purple;
-    padding: 10px;
+    margin-left: 20px;
+    border-radius: 25px;
+}
+
+.data-attribute-holder>h4{
+    color: #329A2D;
+    font-weight: 500;
+    font-size: 20px;
+}
+.data-attribute-holder>span{
+    display: block;
+    margin-top: 10px;
+    font-size: 18px;
 }
 
 .name-holder{
     height: 200px;
     margin-top: 25px;
+    color: #329a2d;
+}
+
+.section-header{
+    margin-left: 30px;
+    color: #329a2d;
+}
+
+.social-media-links{
+    display: inline;
+    margin-left: 40px;
+}
+
+.social-media-links>a{
+    color: #329a2d;
+    font-size: 50px;
+    margin: 5px;
+    top: 94px;
+    position: relative;
 }
