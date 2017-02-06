@@ -8,10 +8,12 @@ import {AppComponent} from "./app.component";
 
 import {SearchComponent} from "./pages/search/search.component";
 import {ProfileComponent} from "./pages/profile/profile.component";
+import {SuggestionsComponent} from "./pages/suggestions/suggestions.component";
 
 const routes: Routes = [
     { path: 'find', component: SearchComponent },
-    { path: 'profile/:name', component: ProfileComponent },
+    { path: 'profile/:name/:id', component: ProfileComponent },
+    { path: 'suggestions/:name', component: SuggestionsComponent },
     { path: '**', redirectTo:'find', pathMatch: 'full' }
 ];
 

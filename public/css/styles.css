@@ -16,3 +16,16 @@
     left: 20%;
     z-index: 10;
 }
+
+.form-icons{
+    font-size: 32px;
+    color: #329A2D;
+}
+
+.people-btn{
+    background-color: #329A2D !important;
+}
+
+.people-btn:hover, .people-btn:focus, .people-btn:active, .people-btn:active:hover, .people-btn:active:focus{
+    background: #329A2D;
+}

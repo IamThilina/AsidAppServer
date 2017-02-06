@@ -25,8 +25,8 @@ export class SearchComponent {
     onSubmit(form: any): void{
         this.searchService.search(form).then(
             response => {
-                this.datastoreService.changeProfile(response);
-                this.router.navigate(['profile', response.name]);
+                this.datastoreService.changeProfiles(response);
+                this.router.navigate(['suggestions', form.name]);
             }, error => {
                 alert(error.message);
             }

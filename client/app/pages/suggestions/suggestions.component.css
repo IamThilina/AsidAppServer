@@ -1,0 +1,32 @@
+.suggested-profile-container{
+    padding: 10px 30px;
+    margin: 25px;
+    box-shadow: 0 10px 5px 0 rgba(0, 0, 0, 0.14);
+    border-radius: 3px;
+    color: rgba(0,0,0, 0.87);
+    background: #fff;
+}
+
+.profile-picture-holder{
+    margin: 20px;
+    border-radius: 25px;
+}
+
+.hint-container{
+    margin: 5px;
+}
+
+.work-place{
+    margin-top: 25px;
+}
+
+.hint-container>p{
+    position: absolute;
+    top: 12px;
+    font-size: 16px;
+    text-align: left;
+}
+
+.suggested-profile-container>.people-btn{
+    margin-top: 20px;
+}

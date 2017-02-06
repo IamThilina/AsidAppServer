@@ -1,0 +1,37 @@
+<div class="container-fluid" style="">
+    <div class="raw">
+        <div class="col-md-4 text-center" *ngFor="let profile of profiles; let i = index">
+            <div class="suggested-profile-container">
+                <img class="profile-picture-holder" [src]="profile['profiles'][0]['socialMedia']['facebook']['profile_picture']" alt="" width="200" height="200">
+                <div class="input-group hint-container">
+								<span class="input-group-addon">
+									<i class="material-icons form-icons">person</i>
+								</span>
+                    <p>{{profile["Aggregated Names"][0]}}</p>
+                </div>
+                <!--city-->
+                <div class="input-group hint-container">
+								<span class="input-group-addon">
+									<i class="material-icons form-icons">location_on</i>
+								</span>
+                    <p>{{profile["profiles"][0]["government"]["NIC data"]["District"]}}</p>
+                </div>
+                <!--school-->
+                <div class="input-group hint-container">
+								<span class="input-group-addon">
+									<i class="material-icons form-icons">school</i>
+								</span>
+                    <p>{{profile['Aggregated Education'][0]}}</p>
+                </div>
+                <!--work-place-->
+                <div class="input-group hint-container work-place">
+								<span class="input-group-addon">
+									<i class="material-icons form-icons">work</i>
+								</span>
+                    <p>{{profile['Aggregated Work'][0]}}</p>
+                </div>
+                <a class="btn btn-primary people-btn" routerLink="/profile/{{name}}/{{i+1}}">Read More</a>
+            </div>
+        </div>
+    </div>
+</div>

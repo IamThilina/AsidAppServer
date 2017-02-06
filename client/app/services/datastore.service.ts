@@ -10,9 +10,9 @@ export class DataStoreService {
     // Observable navItem source
     private _navItemSource = new BehaviorSubject<any>(0);
     // Observable navItem stream
-    profileData$ = this._navItemSource.asObservable();
+    profilesData$ = this._navItemSource.asObservable();
     // service command
-    changeProfile(profile:any) {
-        this._navItemSource.next(profile);
+    changeProfiles(profiles:any) {
+        this._navItemSource.next(profiles);
     }
 }

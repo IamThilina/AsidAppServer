@@ -1,34 +1,34 @@
 /**
- * Created by thilina on 1/4/17.
+ * Created by thilina on 2/6/17.
  */
 import { Component } from "@angular/core";
+import { DataStoreService } from "../../services/datastore.service";
 import {  ActivatedRoute } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
-import { DataStoreService } from "../../services/datastore.service";
 import {Subscription} from "rxjs";
 
 @Component({
-    selector: 'profile',
-    templateUrl: './profile.template.html',
-    styleUrls: ['./profile.component.css']
+    selector: 'suggestions',
+    templateUrl: './suggestions.template.html',
+    styleUrls: ['./suggestions.component.css']
 })
 
-export class ProfileComponent {
+export class SuggestionsComponent {
 
-    profile: any;
-    profileID: number;
+    profiles: any;
+    name: string;
     subscription:Subscription;
     paramSubscription: Subscription;
 
     ngOnInit() {
 
         this.paramSubscription = this.route.params.subscribe(params => {
-            this.profileID = params['id'];
+            this.name = params['name'];
         });
 
         this.subscription = this.datastoreService.profilesData$.subscribe(
             profiles => {
-                this.profile = profiles[this.profileID - 1]
+                this.profiles = profiles
             }
         );
     }

@@ -8,6 +8,7 @@ import {AppRoutingModule} from "./app.routing";
 
 import {SearchComponent} from "./pages/search/search.component";
 import {ProfileComponent} from "./pages/profile/profile.component";
+import {SuggestionsComponent} from "./pages/suggestions/suggestions.component";
 
 import {SearchService} from "./services/search.service";
 import {DataStoreService} from "./services/datastore.service";
@@ -15,7 +16,7 @@ import {DataStoreService} from "./services/datastore.service";
 //when creating a component, add it here
 @NgModule({
     imports: [BrowserModule, FormsModule, HttpModule, AppRoutingModule],
-    declarations: [AppComponent, SearchComponent, ProfileComponent],
+    declarations: [AppComponent, SearchComponent, ProfileComponent, SuggestionsComponent],
     providers: [SearchService, DataStoreService],
     bootstrap: [AppComponent],
 })

@@ -18,7 +18,7 @@ router.post('/post/test', function(req, res, next) {
 
 
 router.post('/find', function(req, res, next) {
-    const aggregatedResults = {
+    /*const aggregatedResults = {
         "Aggregated Education":["University of Moratuwa - Faculty of Engineering","Royal College - Colombo 07 (Colombo)"],
         "Aggregated Work":["Siplo","VEGA"],
         "profiles":[
@@ -72,8 +72,144 @@ router.post('/find', function(req, res, next) {
                     }
             }],
         "Aggregated Names":["Asela Darshan Buddhika Priyadarshana"]
-    };
-
+    };*/
+    const aggregatedResults = [
+            {
+                "Aggregated Education": ["University of Moratuwa - Faculty of Engineering", "Royal College - Colombo 07 (Colombo)"],
+                "Aggregated Work": ["Siplo","VEGA"],
+                "profiles":[
+                    {"government":
+                        {"NIC data":
+                            {
+                                "FamilyName":"",
+                                "postal code":"70100",
+                                "place of birth":"Rathnapura",
+                                "telephone":"+94774592258",
+                                "picture":"http://localhost:3000/images/asela.jpg",
+                                "village or city":"Balangoda",
+                                "Civil Status":"Single",
+                                "Name":"Asela Darshan Buddhika",
+                                "Profession":"Undergraduate",
+                                "E-mail":"asela.12@cse.mrt.ac.lk",
+                                "ID":"923651824V",
+                                "Number of the house":"1F",
+                                "Date of birth":"12/30/1992 12:00:00 AM",
+                                "District":"Rathnapura",
+                                "Surname":"Priyadarshana",
+                                "secretariat division":"Balangoda"
+                            }
+                        },
+                        "socialMedia":
+                            {"facebook":
+                                {"places":[{"city":"Katubedda, Sri Lanka","status":"Current city"}],
+                                    "education":[{"school":"University of Moratuwa - Faculty of Engineering","details":"Class of 2017 · BSc Engineering Honours · Integrated Computer Engineering · Moratuwa, Sri Lanka"},{"school":"University of Moratuwa - Faculty of Engineering","details":"Moratuwa, Sri Lanka"},{"school":"Royal College (Colombo)","details":"Physical science · Colombo, Sri Lanka"}],
+                                    "gender":"Male",
+                                    "social links":"https://lk.linkedin.com/in/aselapriyadarshana(LinkedIn)",
+                                    "work":[{"work":"Siplo","details":"Co-founder · 2015 to present · Moratuwa, Sri Lanka"},{"work":"VEGA","details":"Engineering Intern · 19 October 2015 to 2 April 2016 · Maradana"}],
+                                    "facebook":"http://facebook.com/asela.darshan","name":"Asela Priyadarshana",
+                                    "profile_picture":"https://scontent-sin6-1.xx.fbcdn.net/v/t1.0-1/c164.104.323.323/s160x160/1558597_719877614747952_5267274024535570642_n.jpg?oh=47fd5335a79afbf51f5b6f41a9a45a2b&oe=58EBE85B",
+                                    "_id":{"$oid":"57a5be4afe6fb226a8cb1424"},
+                                    "friends":[]
+                                },
+                                "linkedIn":
+                                    {"skills":["Java","C++","C","Software Engineering","Programming","Computer Hardware","MySQL","Electronics","Object Oriented Software","Embedded Systems","Microcontrollers","Teamwork","Algorithms","C#","HTML","Matlab","Object Oriented Design","Data Structures","Microsoft Office","Visual C++","PHP","NodeJs","Symfony","Raspberry Pi","JavaScript","Amazon Web Services (AWS)","PCB Design","Arduino","Atmel AVR","ASP.NET",".NET","Cross-platform Mobile app development"],
+                                        "education":[{"school":"University of Moratuwa","course":"Bachelor of Science (BSc), Computer Engineering"},{"school":"Royal College - Colombo 07","course":", Mathematics"}],
+                                        "projects":[{"project":"Rhino Mark III Robot Arm Recreation"},{"project":"Object Oriented Software Development"},{"project":"Smart Personal Digital Assistant"},{"project":"SkyLyzer"},{"project":"Smart Personal Digital Assistant"}],
+                                        "languages":["English","Sinhalese"],"name":"Asela Priyadarshana","matched":true,"_id":{"$oid":"57a5eb11fe6fb203d4cbb130"},"linkedin":"https://www.linkedin.com/in/aselapriyadarshana"}
+                            }
+                    }],
+                "Aggregated Names":["Asela Darshan Buddhika Priyadarshana"]},
+            {
+            "Aggregated Education": ["University of Moratuwa - Faculty of Engineering", "Royal College - Colombo 07 (Colombo)"],
+            "Aggregated Work": ["Siplo","VEGA"],
+            "profiles":[
+                {"government":
+                    {"NIC data":
+                        {
+                            "FamilyName":"",
+                            "postal code":"70100",
+                            "place of birth":"Rathnapura",
+                            "telephone":"+94774592258",
+                            "picture":"http://localhost:3000/images/asela.jpg",
+                            "village or city":"Balangoda",
+                            "Civil Status":"Single",
+                            "Name":"Asela Darshan Buddhika",
+                            "Profession":"Undergraduate",
+                            "E-mail":"asela.12@cse.mrt.ac.lk",
+                            "ID":"923651824V",
+                            "Number of the house":"1F",
+                            "Date of birth":"12/30/1992 12:00:00 AM",
+                            "District":"Rathnapura",
+                            "Surname":"Priyadarshana",
+                            "secretariat division":"Balangoda"
+                        }
+                    },
+                    "socialMedia":
+                        {"facebook":
+                            {"places":[{"city":"Katubedda, Sri Lanka","status":"Current city"}],
+                                "education":[{"school":"University of Moratuwa - Faculty of Engineering","details":"Class of 2017 · BSc Engineering Honours · Integrated Computer Engineering · Moratuwa, Sri Lanka"},{"school":"University of Moratuwa - Faculty of Engineering","details":"Moratuwa, Sri Lanka"},{"school":"Royal College (Colombo)","details":"Physical science · Colombo, Sri Lanka"}],
+                                "gender":"Male",
+                                "social links":"https://lk.linkedin.com/in/aselapriyadarshana(LinkedIn)",
+                                "work":[{"work":"Siplo","details":"Co-founder · 2015 to present · Moratuwa, Sri Lanka"},{"work":"VEGA","details":"Engineering Intern · 19 October 2015 to 2 April 2016 · Maradana"}],
+                                "facebook":"http://facebook.com/asela.darshan","name":"Asela Priyadarshana",
+                                "profile_picture":"https://scontent-sin6-1.xx.fbcdn.net/v/t1.0-1/c164.104.323.323/s160x160/1558597_719877614747952_5267274024535570642_n.jpg?oh=47fd5335a79afbf51f5b6f41a9a45a2b&oe=58EBE85B",
+                                "_id":{"$oid":"57a5be4afe6fb226a8cb1424"},
+                                "friends":[]
+                            },
+                            "linkedIn":
+                                {"skills":["Java","C++","C","Software Engineering","Programming","Computer Hardware","MySQL","Electronics","Object Oriented Software","Embedded Systems","Microcontrollers","Teamwork","Algorithms","C#","HTML","Matlab","Object Oriented Design","Data Structures","Microsoft Office","Visual C++","PHP","NodeJs","Symfony","Raspberry Pi","JavaScript","Amazon Web Services (AWS)","PCB Design","Arduino","Atmel AVR","ASP.NET",".NET","Cross-platform Mobile app development"],
+                                    "education":[{"school":"University of Moratuwa","course":"Bachelor of Science (BSc), Computer Engineering"},{"school":"Royal College - Colombo 07","course":", Mathematics"}],
+                                    "projects":[{"project":"Rhino Mark III Robot Arm Recreation"},{"project":"Object Oriented Software Development"},{"project":"Smart Personal Digital Assistant"},{"project":"SkyLyzer"},{"project":"Smart Personal Digital Assistant"}],
+                                    "languages":["English","Sinhalese"],"name":"Asela Priyadarshana","matched":true,"_id":{"$oid":"57a5eb11fe6fb203d4cbb130"},"linkedin":"https://www.linkedin.com/in/aselapriyadarshana"}
+                        }
+                }],
+            "Aggregated Names":["Asela Banadara"]},
+            {
+            "Aggregated Education": ["University of Moratuwa - Faculty of Engineering", "Royal College - Colombo 07 (Colombo)"],
+            "Aggregated Work": ["Siplo","VEGA"],
+            "profiles":[
+                {"government":
+                    {"NIC data":
+                        {
+                            "FamilyName":"",
+                            "postal code":"70100",
+                            "place of birth":"Rathnapura",
+                            "telephone":"+94774592258",
+                            "picture":"http://localhost:3000/images/asela.jpg",
+                            "village or city":"Balangoda",
+                            "Civil Status":"Single",
+                            "Name":"Asela Darshan Buddhika",
+                            "Profession":"Undergraduate",
+                            "E-mail":"asela.12@cse.mrt.ac.lk",
+                            "ID":"923651824V",
+                            "Number of the house":"1F",
+                            "Date of birth":"12/30/1992 12:00:00 AM",
+                            "District":"Rathnapura",
+                            "Surname":"Priyadarshana",
+                            "secretariat division":"Balangoda"
+                        }
+                    },
+                    "socialMedia":
+                        {"facebook":
+                            {"places":[{"city":"Katubedda, Sri Lanka","status":"Current city"}],
+                                "education":[{"school":"University of Moratuwa - Faculty of Engineering","details":"Class of 2017 · BSc Engineering Honours · Integrated Computer Engineering · Moratuwa, Sri Lanka"},{"school":"University of Moratuwa - Faculty of Engineering","details":"Moratuwa, Sri Lanka"},{"school":"Royal College (Colombo)","details":"Physical science · Colombo, Sri Lanka"}],
+                                "gender":"Male",
+                                "social links":"https://lk.linkedin.com/in/aselapriyadarshana(LinkedIn)",
+                                "work":[{"work":"Siplo","details":"Co-founder · 2015 to present · Moratuwa, Sri Lanka"},{"work":"VEGA","details":"Engineering Intern · 19 October 2015 to 2 April 2016 · Maradana"}],
+                                "facebook":"http://facebook.com/asela.darshan","name":"Asela Priyadarshana",
+                                "profile_picture":"https://scontent-sin6-1.xx.fbcdn.net/v/t1.0-1/c164.104.323.323/s160x160/1558597_719877614747952_5267274024535570642_n.jpg?oh=47fd5335a79afbf51f5b6f41a9a45a2b&oe=58EBE85B",
+                                "_id":{"$oid":"57a5be4afe6fb226a8cb1424"},
+                                "friends":[]
+                            },
+                            "linkedIn":
+                                {"skills":["Java","C++","C","Software Engineering","Programming","Computer Hardware","MySQL","Electronics","Object Oriented Software","Embedded Systems","Microcontrollers","Teamwork","Algorithms","C#","HTML","Matlab","Object Oriented Design","Data Structures","Microsoft Office","Visual C++","PHP","NodeJs","Symfony","Raspberry Pi","JavaScript","Amazon Web Services (AWS)","PCB Design","Arduino","Atmel AVR","ASP.NET",".NET","Cross-platform Mobile app development"],
+                                    "education":[{"school":"University of Moratuwa","course":"Bachelor of Science (BSc), Computer Engineering"},{"school":"Royal College - Colombo 07","course":", Mathematics"}],
+                                    "projects":[{"project":"Rhino Mark III Robot Arm Recreation"},{"project":"Object Oriented Software Development"},{"project":"Smart Personal Digital Assistant"},{"project":"SkyLyzer"},{"project":"Smart Personal Digital Assistant"}],
+                                    "languages":["English","Sinhalese"],"name":"Asela Priyadarshana","matched":true,"_id":{"$oid":"57a5eb11fe6fb203d4cbb130"},"linkedin":"https://www.linkedin.com/in/aselapriyadarshana"}
+                        }
+                }],
+            "Aggregated Names":["Asela Gunarathna"]}
+        ];
     const user = req.body.user;
     console.log(user.name);
     res.json(aggregatedResults);
