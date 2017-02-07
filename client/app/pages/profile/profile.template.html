@@ -29,7 +29,7 @@
             </div>
             <div class="data-attribute-holder">
                 <h4>Date Of Birth</h4>
-                <span>{{profile["profiles"][0]["government"]["NIC data"]["Date Of birth"]}}</span>
+                <span>{{profile["profiles"][0]["government"]["NIC data"]["Date Of birth"] | date:'mediumDate'}}</span>
             </div>
             <div class="data-attribute-holder">
                 <h4>District</h4>
@@ -59,6 +59,10 @@
                 <h4>Telephone</h4>
                 <span>{{profile["profiles"][0]["government"]["NIC data"]["telephone"]}}</span>
             </div>
+            <div class="data-attribute-holder">
+                <h4>Secretariat Division</h4>
+                <span>{{profile["profiles"][0]["government"]["NIC data"]["secretariat division"]}}</span>
+            </div>
         </div>
     </div>
 
@@ -84,7 +88,7 @@
     <div class="col-md-6">
         <!--professional career-->
         <h2 class="section-header">
-            <span class="fa fa-book"></span>
+            <span class="fa fa-briefcase"></span>
             &nbsp;&nbsp;Professional Career
         </h2>
         <div class="data-attribute-holder">
@@ -98,8 +102,36 @@
             </span>
         </p>
     </div>
-    <!--languages-->
+    <!--skills-->
     <div class="col-md-12">
+        <h2 class="section-header">
+            <span class="fa fa-trophy"></span>
+            &nbsp;&nbsp;Professional Skills
+        </h2>
+        <div class="col-md-12">
+            <div class="data-attribute-holder col-md-4" style="height: auto">
+                <span *ngFor="let skill of skills.slice(0,skillsPerRow)">{{skill}}</span>
+            </div>
+            <div class="data-attribute-holder col-md-4" style="height: auto;">
+                <span *ngFor="let skill of skills.slice(skillsPerRow,2*skillsPerRow)">{{skill}}</span>
+            </div>
+            <div class="data-attribute-holder col-md-3" style="height: auto;">
+                <span *ngFor="let skill of skills.slice(2*skillsPerRow,skillCount)">{{skill}}</span>
+            </div>
+        </div>
+    </div>
+    <!--projects-->
+    <div class="col-md-6">
+        <h2 class="section-header">
+            <span class="fa fa-calendar-plus-o"></span>
+            Projects
+        </h2>
+        <div class="data-attribute-holder">
+            <span *ngFor="let project of profile['profiles'][0]['socialMedia']['linkedIn']['projects']">{{project.project}}</span>
+        </div>
+    </div>
+    <!--languages-->
+    <div class="col-md-6">
         <h2 class="section-header">
             <span class="fa fa-language"></span>
             &nbsp;&nbsp;Languages

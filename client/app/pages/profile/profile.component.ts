@@ -6,6 +6,7 @@ import {  ActivatedRoute } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 import { DataStoreService } from "../../services/datastore.service";
 import {Subscription} from "rxjs";
+import {count} from "rxjs/operator/count";
 
 @Component({
     selector: 'profile',
@@ -19,6 +20,10 @@ export class ProfileComponent {
     profileID: number;
     subscription:Subscription;
     paramSubscription: Subscription;
+    skills: string[];
+    skillCount: number;
+    skillsPerRow: number;
+
 
     ngOnInit() {
 
@@ -28,7 +33,11 @@ export class ProfileComponent {
 
         this.subscription = this.datastoreService.profilesData$.subscribe(
             profiles => {
-                this.profile = profiles[this.profileID - 1]
+                this.profile = profiles[this.profileID - 1];
+
+                this.skills = this.profile['profiles'][0]['socialMedia']['linkedIn']['skills'];
+                this.skillCount = this.skills.length;
+                this.skillsPerRow = Math.ceil(this.skillCount/3);
             }
         );
     }
