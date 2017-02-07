@@ -48,3 +48,19 @@
     top: 94px;
     position: relative;
 }
+
+.unmerged{
+    color: #086cb7;
+}
+
+.unmerged:hover{
+    cursor: pointer;
+}
+
+.collapse span, .collapsing span{
+    display: block;
+    font-size: 18px;
+    line-height: 1.5;
+    color: #086cb7;
+    font-weight: 500;
+}

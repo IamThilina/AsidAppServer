@@ -9,6 +9,12 @@
     </div>
     <div class="col-md-6 text-left name-holder">
         <h2>{{profile["Aggregated Names"][0]}}</h2>
+        <div data-toggle="collapse" data-target="#unmerged-names" class="unmerged"><i class="material-icons">add_box</i></div>
+        <p id="unmerged-names" class="collapse">
+                <span>{{profile["profiles"][0]["government"]["NIC data"]["Name"]}}</span>
+                <span>{{profile['profiles'][0]['socialMedia']['facebook']["name"]}}</span>
+                <span>{{profile['profiles'][0]['socialMedia']['linkedIn']["name"]}}</span>
+        </p>
     </div>
     <!--personal profile-->
     <h2 class="section-header">
@@ -69,6 +75,11 @@
         <div class="data-attribute-holder">
             <span *ngFor="let school of profile['Aggregated Education']">{{school}}</span>
         </div>
+        <div data-toggle="collapse" data-target="#unmerged-education" class="unmerged" style="margin-left: 30px; margin-top: -20px"><i class="material-icons">add_box</i></div>
+        <p id="unmerged-education" class="collapse" style="margin-left: 30px">
+            <span *ngFor="let education of profile['profiles'][0]['socialMedia']['facebook']['education']">{{education.school}}</span>
+            <span *ngFor="let education of profile['profiles'][0]['socialMedia']['linkedIn']['education']">{{education.school}}</span>
+        </p>
     </div>
     <div class="col-md-6">
         <!--professional career-->
@@ -79,13 +90,20 @@
         <div class="data-attribute-holder">
             <span *ngFor="let company of profile['Aggregated Work']">{{company}}</span>
         </div>
+        <div data-toggle="collapse" data-target="#unmerged-work" class="unmerged" style="margin-left: 30px; margin-top: -20px"><i class="material-icons">add_box</i></div>
+        <p id="unmerged-work" class="collapse" style="margin-left: 30px" >
+            <span *ngFor="let work of profile['profiles'][0]['socialMedia']['facebook']['work']">{{work.work}}</span>
+            <span *ngIf="profile['profiles'][0] && profile['profiles'][0]['socialMedia'] && profile['profiles'][0]['socialMedia']['linkedIn'] && profile['profiles'][0]['socialMedia']['linkedIn']['work']">
+                <span *ngFor="let work of profile['profiles'][0]['socialMedia']['linkedIn']['work']">{{work.work}}</span>
+            </span>
+        </p>
     </div>
     <!--languages-->
-    <h2 class="section-header">
-        <span class="fa fa-language"></span>
-        &nbsp;&nbsp;Languages
-    </h2>
     <div class="col-md-12">
+        <h2 class="section-header">
+            <span class="fa fa-language"></span>
+            &nbsp;&nbsp;Languages
+        </h2>
         <div class="data-attribute-holder">
             <span *ngFor="let language of profile['profiles'][0]['socialMedia']['linkedIn']['languages']">{{language}}</span>
         </div>
