@@ -26,7 +26,7 @@ export class SearchComponent {
         this.searchService.search(form).then(
             response => {
                 this.datastoreService.changeProfile(response);
-                this.router.navigate(['profile', response.name]);
+                this.router.navigate(['profile', response["Aggregated Names"][0]]);
             }, error => {
                 alert(error.message);
             }
