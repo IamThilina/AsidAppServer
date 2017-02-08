@@ -1,10 +1,11 @@
 <div class="container profile-container">
 
     <div class="col-md-6 text-left">
-        <img class="profile-picture-holder" [src]="profile['profiles'][0]['socialMedia']['facebook']['profile_picture']" alt="" width="200" height="200">
+        <img *ngIf="facebookAvailable" class="profile-picture-holder" [src]="profile['profiles'][0]['socialMedia']['facebook']['profile_picture']" alt="" width="200" height="200">
+        <img *ngIf="linkedInAvailable" class="profile-picture-holder" [src]="profile['profiles'][0]['socialMedia']['linkedIn']['profile_picture']" alt="" width="200" height="200">
         <div class="social-media-links">
-            <a [href]="profile['profiles'][0]['socialMedia']['facebook']['facebook']"><span class="fa fa-facebook-square"></span></a>
-            <a [href]="profile['profiles'][0]['socialMedia']['linkedIn']['linkedin']"><span class="fa fa-linkedin-square"></span></a>
+            <a *ngIf="facebookAvailable" [href]="profile['profiles'][0]['socialMedia']['facebook']['facebook']"><span class="fa fa-facebook-square"></span></a>
+            <a *ngIf="linkedInAvailable" [href]="profile['profiles'][0]['socialMedia']['linkedIn']['linkedin']"><span class="fa fa-linkedin-square"></span></a>
         </div>
     </div>
     <div class="col-md-6 text-left name-holder">
@@ -12,8 +13,8 @@
         <div data-toggle="collapse" data-target="#unmerged-names" class="unmerged"><i class="material-icons">add_box</i></div>
         <p id="unmerged-names" class="collapse">
                 <span>{{profile["profiles"][0]["government"]["NIC data"]["Name"]}}</span>
-                <span>{{profile['profiles'][0]['socialMedia']['facebook']["name"]}}</span>
-                <span>{{profile['profiles'][0]['socialMedia']['linkedIn']["name"]}}</span>
+                <span *ngIf="facebookAvailable">{{profile['profiles'][0]['socialMedia']['facebook']["name"]}}</span>
+                <span *ngIf="linkedInAvailable">{{profile['profiles'][0]['socialMedia']['linkedIn']["name"]}}</span>
         </p>
     </div>
     <!--personal profile-->
@@ -93,8 +94,12 @@
         </div>
         <div data-toggle="collapse" data-target="#unmerged-education" class="unmerged" style="margin-left: 30px; margin-top: -20px"><i class="material-icons">add_box</i></div>
         <p id="unmerged-education" class="collapse" style="margin-left: 30px">
-            <span *ngFor="let education of profile['profiles'][0]['socialMedia']['facebook']['education']">{{education.school}}</span>
-            <span *ngFor="let education of profile['profiles'][0]['socialMedia']['linkedIn']['education']">{{education.school}}</span>
+            <span *ngIf="facebookAvailable">
+                <span *ngFor="let education of profile['profiles'][0]['socialMedia']['facebook']['education']">{{education.school}}</span>
+            </span>
+            <span *ngIf="linkedInAvailable">
+                <span *ngFor="let education of profile['profiles'][0]['socialMedia']['linkedIn']['education']">{{education.school}}</span>
+            </span>
         </p>
     </div>
     <div class="col-md-6">
@@ -108,8 +113,10 @@
         </div>
         <div data-toggle="collapse" data-target="#unmerged-work" class="unmerged" style="margin-left: 30px; margin-top: -20px"><i class="material-icons">add_box</i></div>
         <p id="unmerged-work" class="collapse" style="margin-left: 30px" >
-            <span *ngFor="let work of profile['profiles'][0]['socialMedia']['facebook']['work']">{{work.work}}</span>
-            <span *ngIf="profile['profiles'][0] && profile['profiles'][0]['socialMedia'] && profile['profiles'][0]['socialMedia']['linkedIn'] && profile['profiles'][0]['socialMedia']['linkedIn']['work']">
+            <span *ngIf="facebookAvailable">
+                <span *ngFor="let work of profile['profiles'][0]['socialMedia']['facebook']['work']">{{work.work}}</span>
+            </span>
+            <span *ngIf="linkedInAvailable">
                 <span *ngFor="let work of profile['profiles'][0]['socialMedia']['linkedIn']['work']">{{work.work}}</span>
             </span>
         </p>
@@ -160,15 +167,15 @@
         </h2>
 
         <div class="connection-graph">
-            <img class="connection center-circle" [src]="profile['profiles'][0]['socialMedia']['facebook']['profile_picture']" alt="">
-            <img class="connection north-circle" [src]="profile['profiles'][0]['socialMedia']['facebook']['profile_picture']" alt="">
-            <img class="connection north-east-circle" [src]="profile['profiles'][0]['socialMedia']['facebook']['profile_picture']" alt="">
-            <img class="connection east-circle" [src]="profile['profiles'][0]['socialMedia']['facebook']['profile_picture']" alt="">
-            <img class="connection east-south-circle" [src]="profile['profiles'][0]['socialMedia']['facebook']['profile_picture']" alt="">
-            <img class="connection south-circle" [src]="profile['profiles'][0]['socialMedia']['facebook']['profile_picture']" alt="">
-            <img class="connection south-west-circle" [src]="profile['profiles'][0]['socialMedia']['facebook']['profile_picture']" alt="">
-            <img class="connection west-circle" [src]="profile['profiles'][0]['socialMedia']['facebook']['profile_picture']" alt="">
-            <img class="connection west-north-circle" [src]="profile['profiles'][0]['socialMedia']['facebook']['profile_picture']" alt="">
+            <img *ngIf="facebookAvailable" class="connection center-circle" [src]="profile['profiles'][0]['socialMedia']['facebook']['profile_picture']" alt="">
+            <img *ngIf="facebookAvailable" class="connection north-circle" [src]="profile['profiles'][0]['socialMedia']['facebook']['profile_picture']" alt="">
+            <img *ngIf="facebookAvailable" class="connection north-east-circle" [src]="profile['profiles'][0]['socialMedia']['facebook']['profile_picture']" alt="">
+            <img *ngIf="facebookAvailable" class="connection east-circle" [src]="profile['profiles'][0]['socialMedia']['facebook']['profile_picture']" alt="">
+            <img *ngIf="facebookAvailable" class="connection east-south-circle" [src]="profile['profiles'][0]['socialMedia']['facebook']['profile_picture']" alt="">
+            <img *ngIf="facebookAvailable" class="connection south-circle" [src]="profile['profiles'][0]['socialMedia']['facebook']['profile_picture']" alt="">
+            <img *ngIf="facebookAvailable" class="connection south-west-circle" [src]="profile['profiles'][0]['socialMedia']['facebook']['profile_picture']" alt="">
+            <img *ngIf="facebookAvailable" class="connection west-circle" [src]="profile['profiles'][0]['socialMedia']['facebook']['profile_picture']" alt="">
+            <img *ngIf="facebookAvailable" class="connection west-north-circle" [src]="profile['profiles'][0]['socialMedia']['facebook']['profile_picture']" alt="">
             <svg class="connection-lines">
                 <!--north-->
                 <line x1="430" y1="20" x2="430" y2="120" style="stroke:rgb(0,255,0);stroke-width:2"></line>

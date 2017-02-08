@@ -2,7 +2,8 @@
     <div class="raw">
         <div class="col-md-4 text-center" *ngFor="let profile of profiles; let i = index">
             <div class="suggested-profile-container">
-                <img class="profile-picture-holder" [src]="profile['profiles'][0]['socialMedia']['facebook']['profile_picture']" alt="" width="200" height="200">
+                <img class="profile-picture-holder" *ngIf="profile['profiles'][0]['socialMedia']['facebook']" [src]="profile['profiles'][0]['socialMedia']['facebook']['profile_picture']" alt="" width="200" height="200">
+                <img class="profile-picture-holder" *ngIf="!profile['profiles'][0]['socialMedia']['facebook'] && profile['profiles'][0]['socialMedia']['linkedIn']" [src]="profile['profiles'][0]['socialMedia']['linkedIn']['profile_picture']" alt="" width="200" height="200">
                 <div class="input-group hint-container">
 								<span class="input-group-addon">
 									<i class="material-icons form-icons">person</i>

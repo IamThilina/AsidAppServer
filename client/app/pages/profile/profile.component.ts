@@ -23,6 +23,8 @@ export class ProfileComponent {
     skills: string[];
     skillCount: number;
     skillsPerRow: number;
+    facebookAvailable: boolean;
+    linkedInAvailable: boolean;
     vehicles: string[] =  [
         "KC-2384",
         "BB-1342",
@@ -39,6 +41,9 @@ export class ProfileComponent {
         this.subscription = this.datastoreService.profilesData$.subscribe(
             profiles => {
                 this.profile = profiles[this.profileID - 1];
+
+                this.facebookAvailable = this.profile['profiles'][0]['socialMedia'].hasOwnProperty('facebook');
+                this.linkedInAvailable = this.profile['profiles'][0]['socialMedia'].hasOwnProperty('linkedIn');
 
                 this.skills = this.profile['profiles'][0]['socialMedia']['linkedIn']['skills'];
                 this.skillCount = this.skills.length;
