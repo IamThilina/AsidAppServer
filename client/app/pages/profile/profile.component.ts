@@ -23,6 +23,11 @@ export class ProfileComponent {
     skills: string[];
     skillCount: number;
     skillsPerRow: number;
+    vehicles: string[] =  [
+        "KC-2384",
+        "BB-1342",
+        "LL-3456"
+        ];
 
 
     ngOnInit() {

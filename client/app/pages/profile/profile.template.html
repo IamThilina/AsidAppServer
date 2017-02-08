@@ -35,6 +35,10 @@
                 <h4>District</h4>
                 <span>{{profile["profiles"][0]["government"]["NIC data"]["District"]}}</span>
             </div>
+            <div class="data-attribute-holder">
+                <h4>Driving License</h4>
+                <span>B1812342</span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="data-attribute-holder">
@@ -49,6 +53,10 @@
                 <h4>E-mail</h4>
                 <span>{{profile["profiles"][0]["government"]["NIC data"]["E-mail"]}}</span>
             </div>
+            <div class="data-attribute-holder">
+                <h4>Blood Type</h4>
+                <span>B+</span>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="data-attribute-holder">
@@ -62,6 +70,10 @@
             <div class="data-attribute-holder">
                 <h4>Secretariat Division</h4>
                 <span>{{profile["profiles"][0]["government"]["NIC data"]["secretariat division"]}}</span>
+            </div>
+            <div class="data-attribute-holder" style="height: auto">
+                <h4>Vehicles Owned</h4>
+                <span *ngFor="let vehicle of vehicles">{{vehicle}}</span>
             </div>
         </div>
     </div>
@@ -176,28 +188,5 @@
                 <line x1="270" x2="400" y1="80" y2="140" style="stroke:rgb(0,255,0);stroke-width:2"></line>
             </svg>
         </div>
-
-       <!-- <svg width="100%" height="1000">
-            &lt;!&ndash;center circle&ndash;&gt;
-            <defs>
-                <clipPath id="center-circle">
-                    <circle cx="270" cy="270" r="50" stroke="green" stroke-width="4" fill="yellow"></circle>
-                </clipPath>
-            </defs>
-            <image class="center-circle" width="100" height="100" xlink:href="http://images.iimg.in/c/569f4771c45d324bda8b4660-4-501-0-1453279096/google/user-icon-png-pnglogocom.img?crop=1" clip-path="url(#center-circle)"></image>
-            &lt;!&ndash;north circle&ndash;&gt;
-            <circle cx="270" cy="70" r="50" stroke="green" stroke-width="4" fill="yellow"></circle>
-            &lt;!&ndash;east circle&ndash;&gt;
-            <circle cx="470" cy="270" r="50" stroke="green" stroke-width="4" fill="yellow"></circle>
-            &lt;!&ndash;south circle&ndash;&gt;
-            <circle cx="270" cy="470" r="50" stroke="green" stroke-width="4" fill="yellow"></circle>
-            &lt;!&ndash;west circle&ndash;&gt;
-            <circle cx="70" cy="270" r="50" stroke="green" stroke-width="4" fill="yellow"></circle>
-            &lt;!&ndash;connecting lines&ndash;&gt;
-            <line x1="270" y1="220" x2="270" y2="120" style="stroke:rgb(255,0,0);stroke-width:2"></line>
-            <line x1="320" y1="270" x2="420" y2="270" style="stroke:rgb(255,0,0);stroke-width:2"></line>
-            <line x1="270" y1="320" x2="270" y2="420" style="stroke:rgb(255,0,0);stroke-width:2"></line>
-            <line x1="220" y1="270" x2="120"    y2="270" style="stroke:rgb(255,0,0);stroke-width:2"></line>
-        </svg>-->
     </div>
 </div>
