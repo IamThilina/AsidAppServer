@@ -126,7 +126,7 @@
             <span class="fa fa-calendar-plus-o"></span>
             Projects
         </h2>
-        <div class="data-attribute-holder">
+        <div class="data-attribute-holder" style="height: auto">
             <span *ngFor="let project of profile['profiles'][0]['socialMedia']['linkedIn']['projects']">{{project.project}}</span>
         </div>
     </div>
@@ -139,5 +139,65 @@
         <div class="data-attribute-holder">
             <span *ngFor="let language of profile['profiles'][0]['socialMedia']['linkedIn']['languages']">{{language}}</span>
         </div>
+    </div>
+    <!--friends-->
+    <div class="col-md-12">
+        <h2 class="section-header">
+            <span class="fa fa-link"></span>
+            &nbsp;&nbsp;Connections
+        </h2>
+
+        <div class="connection-graph">
+            <img class="connection center-circle" [src]="profile['profiles'][0]['socialMedia']['facebook']['profile_picture']" alt="">
+            <img class="connection north-circle" [src]="profile['profiles'][0]['socialMedia']['facebook']['profile_picture']" alt="">
+            <img class="connection north-east-circle" [src]="profile['profiles'][0]['socialMedia']['facebook']['profile_picture']" alt="">
+            <img class="connection east-circle" [src]="profile['profiles'][0]['socialMedia']['facebook']['profile_picture']" alt="">
+            <img class="connection east-south-circle" [src]="profile['profiles'][0]['socialMedia']['facebook']['profile_picture']" alt="">
+            <img class="connection south-circle" [src]="profile['profiles'][0]['socialMedia']['facebook']['profile_picture']" alt="">
+            <img class="connection south-west-circle" [src]="profile['profiles'][0]['socialMedia']['facebook']['profile_picture']" alt="">
+            <img class="connection west-circle" [src]="profile['profiles'][0]['socialMedia']['facebook']['profile_picture']" alt="">
+            <img class="connection west-north-circle" [src]="profile['profiles'][0]['socialMedia']['facebook']['profile_picture']" alt="">
+            <svg class="connection-lines">
+                <!--north-->
+                <line x1="430" y1="20" x2="430" y2="120" style="stroke:rgb(0,255,0);stroke-width:2"></line>
+                <!--north-east-->
+                <line x1="460" x2="580" y1="145" y2="70" style="stroke:rgb(0,255,0);stroke-width:2"></line>
+                <!--east-->
+                <line x1="470" y1="170" x2="740" y2="170" style="stroke:rgb(0,255,0);stroke-width:2"></line>
+                <!--east-south-->
+                <line x1="400" x2="580" y1="165" y2="250" style="stroke:rgb(0,255,0);stroke-width:2"></line>
+                <!--south-->
+                <line x1="430" y1="220" x2="430" y2="320" style="stroke:rgb(0,255,0);stroke-width:2"></line>
+                <!--south-west-->
+                <line  x1="220" x2="400" y1="300" y2="190" style="stroke:rgb(0,255,0);stroke-width:2"></line>
+                <!--west-->
+                <line x1="390" y1="170" x2="120" y2="170" style="stroke:rgb(0,255,0);stroke-width:2"></line>
+                <!--west-north-->
+                <line x1="270" x2="400" y1="80" y2="140" style="stroke:rgb(0,255,0);stroke-width:2"></line>
+            </svg>
+        </div>
+
+       <!-- <svg width="100%" height="1000">
+            &lt;!&ndash;center circle&ndash;&gt;
+            <defs>
+                <clipPath id="center-circle">
+                    <circle cx="270" cy="270" r="50" stroke="green" stroke-width="4" fill="yellow"></circle>
+                </clipPath>
+            </defs>
+            <image class="center-circle" width="100" height="100" xlink:href="http://images.iimg.in/c/569f4771c45d324bda8b4660-4-501-0-1453279096/google/user-icon-png-pnglogocom.img?crop=1" clip-path="url(#center-circle)"></image>
+            &lt;!&ndash;north circle&ndash;&gt;
+            <circle cx="270" cy="70" r="50" stroke="green" stroke-width="4" fill="yellow"></circle>
+            &lt;!&ndash;east circle&ndash;&gt;
+            <circle cx="470" cy="270" r="50" stroke="green" stroke-width="4" fill="yellow"></circle>
+            &lt;!&ndash;south circle&ndash;&gt;
+            <circle cx="270" cy="470" r="50" stroke="green" stroke-width="4" fill="yellow"></circle>
+            &lt;!&ndash;west circle&ndash;&gt;
+            <circle cx="70" cy="270" r="50" stroke="green" stroke-width="4" fill="yellow"></circle>
+            &lt;!&ndash;connecting lines&ndash;&gt;
+            <line x1="270" y1="220" x2="270" y2="120" style="stroke:rgb(255,0,0);stroke-width:2"></line>
+            <line x1="320" y1="270" x2="420" y2="270" style="stroke:rgb(255,0,0);stroke-width:2"></line>
+            <line x1="270" y1="320" x2="270" y2="420" style="stroke:rgb(255,0,0);stroke-width:2"></line>
+            <line x1="220" y1="270" x2="120"    y2="270" style="stroke:rgb(255,0,0);stroke-width:2"></line>
+        </svg>-->
     </div>
 </div>

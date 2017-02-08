@@ -64,3 +64,58 @@
     color: #086cb7;
     font-weight: 500;
 }
+
+
+.connection-graph{
+    height: 600px;
+    text-align: center;
+}
+
+.connection{
+    width: 100px;
+    height: 100px;
+    border-radius: 50px;
+    box-shadow: 0 10px 5px 0 rgba(73, 248, 80, 0.56);
+    border: 4px #329A2D solid;
+}
+
+.center-circle{
+    transform: translate3d(270px,220px,0);
+}
+
+.north-circle{
+    transform: translate3d(170px,20px,0);
+}
+
+.north-east-circle{
+    transform: translate3d(245px,120px,0);
+}
+
+.east-circle{
+    transform: translate3d(320px,220px,0);
+}
+
+.east-south-circle{
+    transform: translate3d(50px,320px,0);
+}
+
+.south-circle{
+    transform: translate3d(-240px,420px,0);
+}
+
+.south-west-circle{
+    transform: translate3d(-540px,320px,0);
+}
+
+.west-circle{
+    transform: translate3d(-800px,225px,0);
+}
+
+.west-north-circle{
+    transform: translate3d(-750px,120px,0);
+}
+
+.connection-lines{
+    height: 500px;
+    width: 100%;
+}
