@@ -23,6 +23,7 @@
     display: block;
     margin-top: 10px;
     font-size: 18px;
+    text-transform: capitalize;
 }
 
 .name-holder{

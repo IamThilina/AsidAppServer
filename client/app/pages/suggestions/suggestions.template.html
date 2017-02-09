@@ -8,28 +8,28 @@
 								<span class="input-group-addon">
 									<i class="material-icons form-icons">person</i>
 								</span>
-                    <p>{{profile["Aggregated Names"][0]}}</p>
+                    <p>{{profile['profiles'][0]["Aggregated Names"][0]}}</p>
                 </div>
                 <!--city-->
                 <div class="input-group hint-container">
 								<span class="input-group-addon">
 									<i class="material-icons form-icons">location_on</i>
 								</span>
-                    <p>{{profile["profiles"][0]["government"]["NIC data"]["District"]}}</p>
+                    <p>{{profile['profiles'][0]["government"]["NIC data"]["District"]}}</p>
                 </div>
                 <!--school-->
-                <div class="input-group hint-container">
+                <div class="input-group hint-container" style="margin-top: -10px">
 								<span class="input-group-addon">
 									<i class="material-icons form-icons">school</i>
 								</span>
-                    <p>{{profile['Aggregated Education'][0]}}</p>
+                    <p>{{profile['profiles'][0]['Aggregated Education'][0]}}</p>
                 </div>
                 <!--work-place-->
                 <div class="input-group hint-container work-place">
 								<span class="input-group-addon">
 									<i class="material-icons form-icons">work</i>
 								</span>
-                    <p>{{profile['Aggregated Work'][0]}}</p>
+                    <p>{{profile['profiles'][0]['Aggregated Work'][0]}}</p>
                 </div>
                 <a class="btn btn-primary people-btn" routerLink="/profile/{{name}}/{{i+1}}">Read More</a>
             </div>

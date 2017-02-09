@@ -40,12 +40,12 @@ export class ProfileComponent {
 
         this.subscription = this.datastoreService.profilesData$.subscribe(
             profiles => {
-                this.profile = profiles[this.profileID - 1];
+                this.profile = profiles[this.profileID - 1]['profiles'][0];
 
-                this.facebookAvailable = this.profile['profiles'][0]['socialMedia'].hasOwnProperty('facebook');
-                this.linkedInAvailable = this.profile['profiles'][0]['socialMedia'].hasOwnProperty('linkedIn');
+                this.facebookAvailable = this.profile['socialMedia'].hasOwnProperty('facebook');
+                this.linkedInAvailable = this.profile['socialMedia'].hasOwnProperty('linkedIn');
 
-                this.skills = this.profile['profiles'][0]['socialMedia']['linkedIn']['skills'];
+                this.skills = this.profile['socialMedia']['linkedIn']['skills'];
                 this.skillCount = this.skills.length;
                 this.skillsPerRow = Math.ceil(this.skillCount/3);
             }

@@ -1,5 +1,5 @@
 .suggested-profile-container{
-    padding: 10px 30px;
+    padding: 10px 15px;
     margin: 25px;
     box-shadow: 0 10px 5px 0 rgba(0, 0, 0, 0.14);
     border-radius: 3px;
@@ -13,7 +13,7 @@
 }
 
 .hint-container{
-    margin: 5px;
+    height: 50px;
 }
 
 .work-place{
@@ -22,7 +22,7 @@
 
 .hint-container>p{
     position: absolute;
-    top: 12px;
+    top: 20px;
     font-size: 16px;
     text-align: left;
 }
