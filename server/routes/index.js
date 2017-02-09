@@ -561,32 +561,51 @@ router.post('/search', function(req, res, next) {
 
         }, (error, mergedProfiles, body) => {
             if (error){
-		console.log("ERROR AT FACERECOGNITION")
-                console.log(error);
-	    }
+            console.log("ERROR AT FACERECOGNITION")
+                    console.log(error);
+            }
             else{
                 request({  // calling aggregation system
             		method: 'POST',
-           		url: "http://localhost:8080/FYPAsid/rest/UserService/aggregation",
-            		body: mergedProfiles.body,
-			json: true,
-      		        headers: {
-              		  'Content-Type': 'application/json',
-            		}
+                    url: "http://localhost:8080/FYPAsid/rest/UserService/aggregation",
+                    body: mergedProfiles.body,
+                    json: true,
+                    headers: {
+                      'Content-Type': 'application/json',
+                    }
 
-   	       }, (error, profiles, body) => {
-          	  if (error){
-			console.log("ERROR ATAGGREGATION")
-               	        console.log(error);	
-		 } else{
-                	//console.log("RESPONSE FROM AGGREGATION");
-                	//console.log(profiles.body);
-                        res.json(profiles.body);
-           	 }
- // end of aggreation 
-           });
-        }
-        }); //end of facerecognition
+   	             }, (error, aggregatedProfiles, body) => {
+                  if (error){
+                    console.log("ERROR ATAGGREGATION");
+                    console.log(error);
+                  } else{
+                      params = {};
+                      params.school = req.body.user.school;
+                      params.school = req.body.user.workPlace;
+                      params.school = req.body.user.city;
+                      params.profiles = aggregatedProfiles.body;
+
+                      request({  // calling suggesting system
+                          method: 'POST',
+                          url: "http://localhost:8080/FYPAsid/rest/UserService/suggestion",
+                          body: params,
+                          json: true,
+                          headers: {
+                              'Content-Type': 'application/json',
+                          }
+
+                      }, (error, profiles, body) => {
+                          if (error){
+                              console.log("ERROR AT SUGGESTION");
+                              console.log(error);
+                          } else{
+                              res.json(profiles.body);
+                          }
+                      }); // end of suggestion
+                  }
+                }); // end of aggregation
+            }
+        }); //end of face recognition
     });
 });
 
