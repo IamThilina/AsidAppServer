@@ -1,8 +1,8 @@
 
 .form-container{
-    margin: 50px 30px;
-    width: 95%;
-    padding: 10px;
+    margin: 50px;
+    width: 75%;
+    padding: 10px 50px 10px 20px;
 }
 
 .form-container .btn-primary{
