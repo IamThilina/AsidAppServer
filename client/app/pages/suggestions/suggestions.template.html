@@ -2,34 +2,34 @@
     <div class="raw">
         <div class="col-md-4 text-center" *ngFor="let profile of profiles; let i = index">
             <div class="suggested-profile-container">
-                <img class="profile-picture-holder" *ngIf="profile['profiles'][0]['socialMedia']['facebook']" [src]="profile['profiles'][0]['socialMedia']['facebook']['profile_picture']" alt="" width="200" height="200">
-                <img class="profile-picture-holder" *ngIf="!profile['profiles'][0]['socialMedia']['facebook'] && profile['profiles'][0]['socialMedia']['linkedIn']" [src]="profile['profiles'][0]['socialMedia']['linkedIn']['profile_picture']" alt="" width="200" height="200">
+                <img class="profile-picture-holder" *ngIf="profile['everything']['socialMedia']['facebook']" [src]="profile['everything']['socialMedia']['facebook']['profile_picture']" alt="" width="200" height="200">
+                <img class="profile-picture-holder" *ngIf="!profile['everything']['socialMedia']['facebook'] && profile['everything']['socialMedia']['linkedIn']" [src]="profile['everything']['socialMedia']['linkedIn']['profile_picture']" alt="" width="200" height="200">
                 <div class="input-group hint-container">
 								<span class="input-group-addon">
 									<i class="material-icons form-icons">person</i>
 								</span>
-                    <p>{{profile['profiles'][0]["Aggregated Names"][0]}}</p>
+                    <p>{{profile['everything']["Aggregated Names"][0]}}</p>
                 </div>
                 <!--city-->
                 <div class="input-group hint-container">
 								<span class="input-group-addon">
 									<i class="material-icons form-icons">location_on</i>
 								</span>
-                    <p>{{profile['profiles'][0]["government"]["NIC data"]["District"]}}</p>
+                    <p>{{profile['everything']["government"]["NIC data"]["District"]}}</p>
                 </div>
                 <!--school-->
                 <div class="input-group hint-container" style="margin-top: -10px">
 								<span class="input-group-addon">
 									<i class="material-icons form-icons">school</i>
 								</span>
-                    <p>{{profile['profiles'][0]['Aggregated Education'][0]}}</p>
+                    <p>{{profile['everything']['Aggregated Education'][0]['Institute']}}</p>
                 </div>
                 <!--work-place-->
                 <div class="input-group hint-container work-place">
 								<span class="input-group-addon">
 									<i class="material-icons form-icons">work</i>
 								</span>
-                    <p>{{profile['profiles'][0]['Aggregated Work'][0]}}</p>
+                    <p>{{profile['everything']['Aggregated Work'][0]['Company']}}</p>
                 </div>
                 <a class="btn btn-primary people-btn" routerLink="/profile/{{name}}/{{i+1}}">Read More</a>
             </div>

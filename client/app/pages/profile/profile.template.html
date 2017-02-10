@@ -88,10 +88,10 @@
             &nbsp;&nbsp;School Life
         </h2>
         <div class="data-attribute-holder" style="height: auto">
-            <span *ngFor="let school of profile['Aggregated Education'][0]; let count = index;">
-                {{school}}
+            <span *ngFor="let school of profile['Aggregated Education']">
+                {{school.Institute}}
                 <br>
-                {{profile['Aggregated Education'][1][count]}}
+                {{school.Details}}
             </span>
         </div>
         <div data-toggle="collapse" data-target="#unmerged-education" class="unmerged" style="margin-left: 30px; margin-top: -20px"><i class="material-icons">add_box</i></div>
@@ -120,10 +120,10 @@
             &nbsp;&nbsp;Professional Career
         </h2>
         <div class="data-attribute-holder" style="height: auto">
-            <span *ngFor="let company of profile['Aggregated Work'][0]; let count = index;">
-                {{company}}
+            <span *ngFor="let work of profile['Aggregated Work']">
+                {{work.Company}}
                 <br>
-                {{profile['Aggregated Work'][1][count]}}
+                {{work.Details}}
             </span>
         </div>
         <div data-toggle="collapse" data-target="#unmerged-work" class="unmerged" style="margin-left: 30px; margin-top: -20px"><i class="material-icons">add_box</i></div>

@@ -40,7 +40,7 @@ export class ProfileComponent {
 
         this.subscription = this.datastoreService.profilesData$.subscribe(
             profiles => {
-                this.profile = profiles[this.profileID - 1]['profiles'][0];
+                this.profile = profiles[this.profileID - 1]['everything'];
 
                 this.facebookAvailable = this.profile['socialMedia'].hasOwnProperty('facebook');
                 this.linkedInAvailable = this.profile['socialMedia'].hasOwnProperty('linkedIn');
