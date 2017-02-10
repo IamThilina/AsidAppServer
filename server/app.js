@@ -11,6 +11,7 @@ var webpackHotMiddleWare = require('webpack-hot-middleware');
 var webpackConfig = require('../webpack/webpack.dev');
 
 var index = require('./routes/index');
+var authAPI = require('./routes/authAPI');
 
 var port = 3000;
 var app = express();
@@ -45,9 +46,12 @@ app.use(webpackHotMiddleWare(compiler, {
     heartbeat: 10 * 1000
 }));
 
-app.use('/', index);
 app.use('/find', index);
+app.use('/profile', index);
+app.use('/suggestions', index);
+app.use('/api/authorize', authAPI);
 app.use('/api', index);
+app.use('/', index);
 
 app.listen(port, function(){
     console.log('Server started on port '+port);

@@ -1,0 +1,46 @@
+<div class="container-fluid landing-cover">
+    <img src="/people.jpg" alt="">
+    <div class="btn-container">
+        <button class="btn btn-primary people-btn login-btn" (click)="onPublicUser()">Seek as a Public User</button>
+        <button class="btn btn-primary people-btn login-btn" data-toggle="modal" data-target="#loginModal">Seek as a Privileged User</button>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="loginModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4><span class="glyphicon glyphicon-lock"></span> Login</h4>
+                </div>
+                <div class="modal-body">
+                    <form role="form" #loginForm="ngForm" (ngSubmit)="onPrivilegedUser(loginForm.value)" class="">
+                        <!--username-->
+                        <div class="input-group">
+								<span class="input-group-addon">
+									<i class="material-icons form-icons">person</i>
+								</span>
+                            <div class="form-group is-empty"><input type="text" class="form-control" placeholder="what's your username" name="username" ngModel><span class="material-input"></span></div>
+                        </div>
+                        <!--password-->
+                        <div class="input-group">
+								<span class="input-group-addon">
+									<i class="material-icons form-icons">vpn_key</i>
+								</span>
+                            <div class="form-group is-empty"><input type="password" class="form-control" placeholder="What's your password" name="password" ngModel><span class="material-input"></span></div>
+                        </div>
+                        <div class="checkbox" style="margin-left: 20px">
+                            <label><input type="checkbox" value="" checked>Remember me</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary people-btn" style="margin-left: 20px"><span class="glyphicon glyphicon-off"></span> Login</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

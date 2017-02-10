@@ -1,21 +1,16 @@
-																																																			var express = require('express');
+var express = require('express');
 var http = require('http');
 var request = require('request');
 var router = express.Router();
 var async = require('async');
 var querystring = require('querystring');
+var jwt = require('jsonwebtoken');
+var config = require('../config');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
     res.render('index.html');
 });
-
-router.post('/post/test', function(req, res, next) {
-    console.log(req.body)
-    console.log(req.body.name)
-    res.send(200);
-});
-
 
 router.post('/find', function(req, res, next) {
     /*const aggregatedResults = {
@@ -362,27 +357,65 @@ router.post('/find', function(req, res, next) {
     res.json(aggregatedResults);
 });
 
-/* Test FaceRecognition Server */
-router.get('/test', function(req, res, next) {
+// route to verify user
+router.post('/verify', function (req, res, next) {
+    const token = req.cookies['SEEK_THEM_COOKIE'];
+    if (token) {
+        jwt.verify(token, config.jwtSecret, (err, decoded) => {
+            "use strict";
+            if (err) {
+                return res.status(403).json({
+                    success: false,
+                    message: 'failed to authenticate'
+                });
+            } else if(decoded.role == 'PUBLIC'){
+                res.json({
+                    role: decoded.role
+                });
+            } else
+                return res.status(403).send({
+                    success: false,
+                    message: 'not authorized'
+                });
+        });
+    } else {
+        // if there is no token
+        // return an error
+        return res.status(403).send({
+            success: false,
+            message: 'no identity provided.'
+        });
+    }
+});
 
-    request({
-        method: 'POST',
-        url: "http://localhost:4000/post/test",
-        json: true,
-        body: {foo: "bar"},
-        headers: {
-            'Content-Type': 'application/json',
-        }
-
-    }, (error, response, body) => {
-        if (error)
-            console.log(error);
-        else{
-          console.log(response);
-          console.log(body);
-        }
-    }); //end of request
-
+// middleware protect api
+router.use(function (req, res, next) {
+    const token = req.cookies['SEEK_THEM_COOKIE'];
+    if (token) {
+        jwt.verify(token, config.jwtSecret, (err, decoded) => {
+            "use strict";
+            if (err) {
+                return res.status(403).json({
+                success: false,
+                message: 'failed to authenticate'
+                });
+            } else if(decoded.role == 'PUBLIC'){
+                req.decoded = decoded;
+                next();
+            } else
+            return res.status(403).send({
+                success: false,
+                message: 'not authorized'
+            });
+        });
+    } else {
+        // if there is no token
+        // return an error
+        return res.status(403).send({
+            success: false,
+            message: 'no identity provided.'
+        });
+    }
 });
 
 /* GET Merged SocialMedia n Government Profiles*/
