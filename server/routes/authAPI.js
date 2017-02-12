@@ -35,5 +35,21 @@ router.post('/privileged', function(req, res, next) {
     });
 });
 
+router.get('/add/role/:role', function(req, res, next) {
+    const user = {
+        username: req.params.role + "_USER",
+        password: req.params.role + "_PASSWORD",
+        role: req.params.role
+    };
+    AuthService.addRole(user).then(response => {
+        res.status(200).json(user);
+    }, error => {
+        res.status(406).json({
+            success: false,
+            message: "Invalid Request"
+        });
+    });
+});
+
 
 module.exports = router;

@@ -44,6 +44,24 @@ class AuthService {
         });
     }
 
+    addRole(user) {
+        return new Promise((fulfill, reject) => {
+            mysqlConnectionPool.getConnection(function (err, connection) {
+                let sql = 'INSERT INTO users' +
+                    '  ( username, password, role)' +
+                    ' VALUES (?, ?)';
+                let values = [user.username, passwordHash.generate(user.password), user.role];
+                connection.query(sql, values, function (err, rows, fields) {
+                    if (err)
+                        reject(err);
+
+                    fulfill();
+                });
+            });
+
+        });
+    }
+
 }
 
 module.exports = new AuthService();
