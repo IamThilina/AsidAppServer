@@ -498,7 +498,7 @@ router.post('/search', function(req, res, next) {
 		console.log("Calling Aggregation API");
                 request({  // calling aggregation system
             		method: 'POST',
-                    url: "http://localhost:8080/FYPAsid/rest/UserService/aggregation",
+                    url: "http://localhost:8080/FYPAsid/rest/UserService/user/aggregation",
                     body: mergedProfiles.body,
                     json: true,
                     headers: {
@@ -507,16 +507,20 @@ router.post('/search', function(req, res, next) {
 
    	             }, (error, aggregatedProfiles, body) => {
                   if (error){
+			//console.log(aggregatedProfiles.body);
                     console.log("ERROR ATAGGREGATION");
                     console.log(error);
                   } else{
+			console.log("Recieved Aggregation Results");
 		      console.log("Calling Suggestion API");
                       const params = {};
                       params.school = req.body.user.school;
-                      params.school = req.body.user.workPlace;
-                      params.school = req.body.user.city;
+                      params.workPlace = req.body.user.workPlace;
+                      params.city = req.body.user.city;
+		      params.name = req.body.user.name;
                       params.profiles = aggregatedProfiles.body;
 
+			console.log(params);
                       request({  // calling suggesting system
                           method: 'POST',
                           url: "http://localhost:8080/FYPAsid/rest/UserService/suggestion",
@@ -531,6 +535,7 @@ router.post('/search', function(req, res, next) {
                               console.log("ERROR AT SUGGESTION");
                               console.log(error);
                           } else{
+				console.log(profiles.body);
 			      console.log("Recieved Suggestion Results");
                               res.json(profiles.body);
                           }
