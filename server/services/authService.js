@@ -49,7 +49,7 @@ class AuthService {
             mysqlConnectionPool.getConnection(function (err, connection) {
                 let sql = 'INSERT INTO users' +
                     '  ( username, password, role)' +
-                    ' VALUES (?, ?)';
+                    ' VALUES (?, ?, ?)';
                 let values = [user.username, passwordHash.generate(user.password), user.role];
                 connection.query(sql, values, function (err, rows, fields) {
                     if (err)

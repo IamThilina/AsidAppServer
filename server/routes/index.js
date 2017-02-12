@@ -368,7 +368,7 @@ router.post('/verify', function (req, res, next) {
                     success: false,
                     message: 'failed to authenticate'
                 });
-            } else if(decoded.role == 'PUBLIC'){
+            } else if(decoded.role == 'PUBLIC' || decoded.role == 'MOTOR' || decoded.role == 'NIC' || decoded.role == 'LICENSE'){
                 res.json({
                     role: decoded.role
                 });
@@ -425,7 +425,7 @@ router.post('/search', function(req, res, next) {
                 var options = {
                     host: 'localhost',
                     port: 8080,
-                    path: '/FYPAsid/rest/UserService/user?town=colomb0&choice=g&name=' + req.body.user.name,
+                    path: '/fypasid/rest/UserService/user?town=colomb0&choice=g&name=' + req.body.user.name,
                     method: 'GET'
                 };
 		console.log("Calling Gov API");
@@ -498,7 +498,7 @@ router.post('/search', function(req, res, next) {
 		console.log("Calling Aggregation API");
                 request({  // calling aggregation system
             		method: 'POST',
-                    url: "http://localhost:8080/FYPAsid/rest/UserService/user/aggregation",
+                    url: "http://localhost:8080/fypasid/rest/UserService/user/aggregation",
                     body: mergedProfiles.body,
                     json: true,
                     headers: {
@@ -523,7 +523,7 @@ router.post('/search', function(req, res, next) {
 			console.log(params);
                       request({  // calling suggesting system
                           method: 'POST',
-                          url: "http://localhost:8080/FYPAsid/rest/UserService/suggestion",
+                          url: "http://localhost:8080/fypasid/rest/UserService/suggestion",
                           body: params,
                           json: true,
                           headers: {
