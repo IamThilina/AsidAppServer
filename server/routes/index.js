@@ -428,7 +428,7 @@ router.post('/search', function(req, res, next) {
                     path: '/FYPAsid/rest/UserService/user?town=colomb0&choice=g&name=' + req.body.user.name,
                     method: 'GET'
                 };
-
+		console.log("Calling Gov API");
                 govCallback = function(response) {
                     var govProfiles = '';
 
@@ -440,6 +440,7 @@ router.post('/search', function(req, res, next) {
                     //the whole response has been recieved, so we just print it out here
                     response.on('end', function () {
                         //console.log(govProfiles);
+			console.log("Recieved Gov Results");
                         callback(null, govProfiles );
                     });
                 };
@@ -453,7 +454,8 @@ router.post('/search', function(req, res, next) {
                 path: '/match?name=' + req.body.user.name,
                 method: 'GET'
             };
-
+	
+	    console.log("Calling Social API");
             socialCallback = function(response) {
                 var socialProfiles = '';
 
@@ -465,6 +467,7 @@ router.post('/search', function(req, res, next) {
                 //the whole response has been recieved, so we just print it out here
                 response.on('end', function () {
                     //console.log(socialProfiles);
+		    console.log("Recieved Social Results");
                     callback(null, socialProfiles );
                 });
             };
@@ -475,6 +478,7 @@ router.post('/search', function(req, res, next) {
         if (err)
             res.send(err);
 
+	console.log("Calling FaceRecognition API");
         request({  // calling face recognition system
             method: 'POST',
             url: "http://localhost:4000/facerecognizer/merge",
@@ -490,6 +494,8 @@ router.post('/search', function(req, res, next) {
                     console.log(error);
             }
             else{
+		console.log("Recieved FaceRecognition Results");
+		console.log("Calling Aggregation API");
                 request({  // calling aggregation system
             		method: 'POST',
                     url: "http://localhost:8080/FYPAsid/rest/UserService/aggregation",
@@ -504,7 +510,8 @@ router.post('/search', function(req, res, next) {
                     console.log("ERROR ATAGGREGATION");
                     console.log(error);
                   } else{
-                      params = {};
+		      console.log("Calling Suggestion API");
+                      const params = {};
                       params.school = req.body.user.school;
                       params.school = req.body.user.workPlace;
                       params.school = req.body.user.city;
@@ -524,6 +531,7 @@ router.post('/search', function(req, res, next) {
                               console.log("ERROR AT SUGGESTION");
                               console.log(error);
                           } else{
+			      console.log("Recieved Suggestion Results");
                               res.json(profiles.body);
                           }
                       }); // end of suggestion
