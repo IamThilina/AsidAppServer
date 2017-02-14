@@ -83,9 +83,9 @@
     </div>
 
     <!--schools-->
-    <div class="col-md-6" *ngIf="(facebookAvailable && profile['socialMedia']['facebook']['education'].length >0) || (linkedInAvailable && profile['socialMedia']['linkedIn']['education'].length > 0)">
+    <div class="col-md-6" *ngIf="(facebookAvailable && profile['socialMedia']['facebook']['education'] && profile['socialMedia']['facebook']['education'].length >0) || (linkedInAvailable && profile['socialMedia']['linkedIn']['education'] && profile['socialMedia']['linkedIn']['education'].length > 0)">
         <!--school life-->
-        <h2 class="section-header" *ngIf="profile['Aggregated Education'].length > 0">
+        <h2 class="section-header" *ngIf="profile['Aggregated Education'] && profile['Aggregated Education'].length > 0">
             <span class="fa fa-book"></span>
             &nbsp;&nbsp;School Life
         </h2>
@@ -148,7 +148,7 @@
     </div>
 
     <!--skills-->
-    <div class="col-md-12" *ngIf="linkedInAvailable && profile['socialMedia']['linkedIn']['skills'].length > 0">
+    <div class="col-md-12" *ngIf="linkedInAvailable && profile['socialMedia']['linkedIn']['skills'] && profile['socialMedia']['linkedIn']['skills'].length > 0">
         <h2 class="section-header">
             <span class="fa fa-trophy"></span>
             &nbsp;&nbsp;Professional Skills
@@ -167,7 +167,7 @@
     </div>
 
     <!--projects-->
-    <div class="col-md-6" *ngIf="linkedInAvailable && profile['socialMedia']['linkedIn']['projects'].length > 0">
+    <div class="col-md-6" *ngIf="linkedInAvailable && profile['socialMedia']['linkedIn']['projects'] && profile['socialMedia']['linkedIn']['projects'].length > 0">
         <h2 class="section-header">
             <span class="fa fa-calendar-plus-o"></span>
             Projects
@@ -177,7 +177,7 @@
         </div>
     </div>
     <!--languages-->
-    <div class="col-md-6" *ngIf="linkedInAvailable && profile['socialMedia']['linkedIn']['languages'].length > 0">
+    <div class="col-md-6" *ngIf="linkedInAvailable && profile['socialMedia']['linkedIn']['languages'] && profile['socialMedia']['linkedIn']['languages'].length > 0">
         <h2 class="section-header">
             <span class="fa fa-language"></span>
             &nbsp;&nbsp;Languages
@@ -188,7 +188,7 @@
     </div>
 
     <!--friends-->
-    <div class="col-md-12" *ngIf="facebookAvailable && profile['socialMedia']['facebook']['friends'].length > 0">
+    <div class="col-md-12" *ngIf="facebookAvailable && profile['socialMedia']['facebook']['friends'] && profile['socialMedia']['facebook']['friends'].length > 0">
         <h2 class="section-header">
             <span class="fa fa-link"></span>
             &nbsp;&nbsp;Connections
