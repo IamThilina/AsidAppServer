@@ -26,7 +26,7 @@ export class AuthGuard implements CanActivate {
                 .then(response => {
                     //noinspection TypeScriptUnresolvedFunction
                     this.userRole =  response.json().role;
-                    if(this.userRole == "PUBLIC" || this.userRole == "NIC" || this.userRole == "MOTOR" || this.userRole == "LICENSE") {
+                    if(this.userRole == "PUBLIC" || this.userRole == "NIC" || this.userRole == "MOTOR" || this.userRole == "LICENSE" || this.userRole == 'ADMIN') {
                         this.authorized = true;
                         resolve(true);
                     }
