@@ -394,18 +394,19 @@ router.use(function (req, res, next) {
     if (token) {
         jwt.verify(token, config.jwtSecret, (err, decoded) => {
             "use strict";
+console.log(decoded.role);
             if (err) {
                 return res.status(403).json({
                 success: false,
                 message: 'failed to authenticate'
                 });
-            } else if(decoded.role == 'PUBLIC'){
+            } else if(decoded.role == 'PUBLIC'|| decoded.role == 'MOTOR' || decoded.role == 'NIC' || decoded.role == 'LICENSE'){
                 req.decoded = decoded;
                 next();
             } else
             return res.status(403).send({
                 success: false,
-                message: 'not authorized'
+                message: 'Not Authorized'
             });
         });
     } else {

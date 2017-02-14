@@ -12,7 +12,7 @@
         <h2>{{profile["Aggregated Names"][0]}}</h2>
         <div data-toggle="collapse" data-target="#unmerged-names" class="unmerged"><i class="material-icons">add_box</i></div>
         <p id="unmerged-names" class="collapse">
-                <span>{{profile["government"]["NIC data"]["Name"]}}</span>
+                <span *ngIf="nicAvailable">{{profile["government"]["NIC data"]["Name"]}}</span>
                 <span *ngIf="facebookAvailable">{{profile['socialMedia']['facebook']["name"]}}</span>
                 <span *ngIf="linkedInAvailable">{{profile['socialMedia']['linkedIn']["name"]}}</span>
         </p>
@@ -153,7 +153,7 @@
             <span class="fa fa-trophy"></span>
             &nbsp;&nbsp;Professional Skills
         </h2>
-        <div class="col-md-12">
+        <div class="col-md-12" *ngIf="linkedInAvailable">
             <div class="data-attribute-holder col-md-4" style="height: auto">
                 <span *ngFor="let skill of skills.slice(0,skillsPerRow)">{{skill}}</span>
             </div>
@@ -172,7 +172,7 @@
             <span class="fa fa-calendar-plus-o"></span>
             Projects
         </h2>
-        <div class="data-attribute-holder" style="height: auto">
+        <div class="data-attribute-holder" style="height: auto" *ngIf="linkedInAvailable">
             <span *ngFor="let project of profile['socialMedia']['linkedIn']['projects']">{{project.project}}</span>
         </div>
     </div>
@@ -182,7 +182,7 @@
             <span class="fa fa-language"></span>
             &nbsp;&nbsp;Languages
         </h2>
-        <div class="data-attribute-holder">
+        <div class="data-attribute-holder" *ngIf="linkedInAvailable">
             <span *ngFor="let language of profile['socialMedia']['linkedIn']['languages']">{{language}}</span>
         </div>
     </div>

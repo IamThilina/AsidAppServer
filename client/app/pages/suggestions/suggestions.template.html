@@ -8,28 +8,28 @@
 								<span class="input-group-addon">
 									<i class="material-icons form-icons">person</i>
 								</span>
-                    <p>{{profile['everything']["Aggregated Names"][0]}}</p>
+                    <p *ngIf="profile['everything']['Aggregated Names']">{{profile['everything']["Aggregated Names"][0]}}</p>
                 </div>
                 <!--city-->
-                <div class="input-group hint-container">
+                <div class="input-group hint-container" *ngIf="profile['everything']['government'] && profile['everything']['government']['NIC']">
 								<span class="input-group-addon">
 									<i class="material-icons form-icons">location_on</i>
 								</span>
-                    <p *ngIf="profile['everything']['government'] && profile['everything']['government']['NIC']">{{profile['everything']["government"]["NIC data"]["District"]}}</p>
+                    <p>{{profile['everything']["government"]["NIC data"]["District"]}}</p>
                 </div>
                 <!--school-->
                 <div class="input-group hint-container" style="margin-top: -10px">
 								<span class="input-group-addon">
 									<i class="material-icons form-icons">school</i>
 								</span>
-                    <p>{{profile['everything']['Aggregated Education'][0]['Institute']}}</p>
+                    <p *ngIf="profile['everything']['Aggregated Education'] && profile['everything']['Aggregated Education'][0]">{{profile['everything']['Aggregated Education'][0]['Institute']}}</p>
                 </div>
                 <!--work-place-->
                 <div class="input-group hint-container work-place">
 								<span class="input-group-addon">
 									<i class="material-icons form-icons">work</i>
 								</span>
-                    <p>{{profile['everything']['Aggregated Work'][0]['Company']}}</p>
+                    <p *ngIf="profile['everything']['Aggregated Work'] && profile['everything']['Aggregated Work'][0]">{{profile['everything']['Aggregated Work'][0]['Company']}}</p>
                 </div>
                 <a class="btn btn-primary people-btn" routerLink="/profile/{{name}}/{{i+1}}">Read More</a>
             </div>

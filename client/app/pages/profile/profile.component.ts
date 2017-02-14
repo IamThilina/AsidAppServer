@@ -56,9 +56,11 @@ export class ProfileComponent {
                     this.licenseAvailable = this.profile['government'].hasOwnProperty('Driving License data');
                 }
 
-                this.skills = this.profile['socialMedia']['linkedIn']['skills'];
-                this.skillCount = this.skills.length;
-                this.skillsPerRow = Math.ceil(this.skillCount/3);
+		if(this.linkedInAvailable){
+                	this.skills = this.profile['socialMedia']['linkedIn']['skills'];
+                	this.skillCount = this.skills.length;
+                	this.skillsPerRow = Math.ceil(this.skillCount/3);
+		}
             }
         );
     }
