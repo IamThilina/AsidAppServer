@@ -25,6 +25,11 @@ export class ProfileComponent {
     skillsPerRow: number;
     facebookAvailable: boolean;
     linkedInAvailable: boolean;
+    govAvailable: boolean;
+    nicAvailable: boolean = false;
+    motorAvailable: boolean = false;
+    licenseAvailable: boolean = false;
+
     vehicles: string[] =  [
         "KC-2384",
         "BB-1342",
@@ -44,6 +49,12 @@ export class ProfileComponent {
 
                 this.facebookAvailable = this.profile['socialMedia'].hasOwnProperty('facebook');
                 this.linkedInAvailable = this.profile['socialMedia'].hasOwnProperty('linkedIn');
+                this.govAvailable = this.profile.hasOwnProperty('government');
+                if(this.govAvailable){
+                    this.nicAvailable = this.profile['government'].hasOwnProperty('NIC data');
+                    this.motorAvailable = this.profile['government'].hasOwnProperty('Vehicle data ');
+                    this.licenseAvailable = this.profile['government'].hasOwnProperty('Driving License data');
+                }
 
                 this.skills = this.profile['socialMedia']['linkedIn']['skills'];
                 this.skillCount = this.skills.length;

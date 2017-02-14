@@ -16,6 +16,8 @@ import { DataStoreService } from "../../services/datastore.service";
 
 export class LandingComponent {
 
+    hideModal: boolean = false;
+
     constructor(
         private searchService: SearchService,
         private router: Router
@@ -33,6 +35,7 @@ export class LandingComponent {
     }
 
     onPrivilegedUser(form: any): void{
+        this.hideModal = true;
         this.searchService.authorizePrivilegedUser(form).then(
             response => {
                 localStorage.setItem("name", response.name);
