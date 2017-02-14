@@ -24,58 +24,58 @@
         &nbsp;&nbsp;Personal Profile
     </h2>
     <div class="col-md-12">
-        <div class="col-md-4">
+        <div class="col-md-4" *ngIf="nicAvailable">
             <div class="data-attribute-holder">
                 <h4>Civil Status</h4>
-                <span *ngIf="nicAvailable">{{profile["government"]["NIC data"]["Civil Status"]}}</span>
+                <span>{{profile["government"]["NIC data"]["Civil Status"]}}</span>
             </div>
             <div class="data-attribute-holder">
                 <h4>Date Of Birth</h4>
-                <span *ngIf="nicAvailable">{{profile["government"]["NIC data"]["Date Of birth"] | date:'mediumDate'}}</span>
+                <span>{{profile["government"]["NIC data"]["Date Of birth"] | date:'mediumDate'}}</span>
             </div>
             <div class="data-attribute-holder">
                 <h4>District</h4>
-                <span *ngIf="nicAvailable">{{profile["government"]["NIC data"]["District"]}}</span>
-            </div>
-            <div class="data-attribute-holder">
-                <h4>Driving License</h4>
-                <span *ngIf="licenseAvailable">{{profile["government"]["Driving License data"]["driving license number"]}}</span>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="data-attribute-holder">
-                <h4>NIC</h4>
-                <span *ngIf="nicAvailable">{{profile["government"]["NIC data"]["ID"]}}</span>
-            </div>
-            <div class="data-attribute-holder">
-                <h4>Place Of Birth</h4>
-                <span *ngIf="nicAvailable">{{profile["government"]["NIC data"]["place of birth"]}}</span>
+                <span>{{profile["government"]["NIC data"]["District"]}}</span>
             </div>
             <div class="data-attribute-holder">
                 <h4>E-mail</h4>
-                <span style="text-transform: lowercase" *ngIf="nicAvailable">{{profile["government"]["NIC data"]["E-mail"]}}</span>
-            </div>
-            <div class="data-attribute-holder">
-                <h4>Blood Type</h4>
-                <span *ngIf="licenseAvailable">{{profile["government"]["Driving License data"]["Blood Type"]}}</span>
+                <span style="text-transform: lowercase">{{profile["government"]["NIC data"]["E-mail"]}}</span>
             </div>
         </div>
         <div class="col-md-4">
-            <div class="data-attribute-holder">
+            <div class="data-attribute-holder" *ngIf="nicAvailable">
+                <h4>NIC</h4>
+                <span>{{profile["government"]["NIC data"]["ID"]}}</span>
+            </div>
+            <div class="data-attribute-holder" *ngIf="nicAvailable">
+                <h4>Place Of Birth</h4>
+                <span>{{profile["government"]["NIC data"]["place of birth"]}}</span>
+            </div>
+            <div class="data-attribute-holder" *ngIf="licenseAvailable">
+                <h4>Driving License</h4>
+                <span>{{profile["government"]["Driving License data"]["driving license number"]}}</span>
+            </div>
+            <div class="data-attribute-holder"*ngIf="licenseAvailable">
+                <h4>Blood Type</h4>
+                <span>{{profile["government"]["Driving License data"]["Blood Type"]}}</span>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="data-attribute-holder" *ngIf="nicAvailable">
                 <h4>Address</h4>
-                <span *ngIf="nicAvailable">No {{profile["government"]["NIC data"]["Number of the house"]}},{{profile["government"]["NIC data"]["village or city"]}},{{profile["government"]["NIC data"]["District"]}}</span>
+                <span>No {{profile["government"]["NIC data"]["Number of the house"]}},{{profile["government"]["NIC data"]["village or city"]}},{{profile["government"]["NIC data"]["District"]}}</span>
             </div>
-            <div class="data-attribute-holder">
+            <div class="data-attribute-holder" *ngIf="nicAvailable">
                 <h4>Telephone</h4>
-                <span *ngIf="nicAvailable">{{profile["government"]["NIC data"]["telephone"]}}</span>
+                <span>{{profile["government"]["NIC data"]["telephone"]}}</span>
             </div>
-            <div class="data-attribute-holder">
+            <div class="data-attribute-holder" *ngIf="nicAvailable">
                 <h4>Secretariat Division</h4>
-                <span *ngIf="nicAvailable">{{profile["government"]["NIC data"]["secretariat division"]}}</span>
+                <span>{{profile["government"]["NIC data"]["secretariat division"]}}</span>
             </div>
-            <div class="data-attribute-holder" style="height: auto">
+            <div class="data-attribute-holder" style="height: auto" *ngIf="motorAvailable">
                 <h4>Vehicles Owned</h4>
-                <span *ngIf="motorAvailable">
+                <span>
                     {{profile['government']['Vehicle data']['vehicle number']}}
                 </span>
             </div>
@@ -83,9 +83,9 @@
     </div>
 
     <!--schools-->
-    <div class="col-md-6">
+    <div class="col-md-6" *ngIf="(facebookAvailable && profile['socialMedia']['facebook']['education'].length >0) || (linkedInAvailable && profile['socialMedia']['linkedIn']['education'].length > 0)">
         <!--school life-->
-        <h2 class="section-header">
+        <h2 class="section-header" *ngIf="profile['Aggregated Education'].length > 0">
             <span class="fa fa-book"></span>
             &nbsp;&nbsp;School Life
         </h2>
@@ -115,9 +115,9 @@
         </p>
     </div>
     <!--work-->
-    <div class="col-md-6">
+    <div class="col-md-6" *ngIf="(facebookAvailable && profile['socialMedia']['facebook']['work'].length >0) || (linkedInAvailable && profile['socialMedia']['linkedIn']['work'].length > 0)">
         <!--professional career-->
-        <h2 class="section-header">
+        <h2 class="section-header" *ngIf="profile['Aggregated Work'].length > 0">
             <span class="fa fa-briefcase"></span>
             &nbsp;&nbsp;Professional Career
         </h2>
@@ -148,12 +148,12 @@
     </div>
 
     <!--skills-->
-    <div class="col-md-12">
+    <div class="col-md-12" *ngIf="linkedInAvailable && profile['socialMedia']['linkedIn']['skills'].length > 0">
         <h2 class="section-header">
             <span class="fa fa-trophy"></span>
             &nbsp;&nbsp;Professional Skills
         </h2>
-        <div class="col-md-12" *ngIf="linkedInAvailable">
+        <div class="col-md-12">
             <div class="data-attribute-holder col-md-4" style="height: auto">
                 <span *ngFor="let skill of skills.slice(0,skillsPerRow)">{{skill}}</span>
             </div>
@@ -167,43 +167,43 @@
     </div>
 
     <!--projects-->
-    <div class="col-md-6">
+    <div class="col-md-6" *ngIf="linkedInAvailable && profile['socialMedia']['linkedIn']['projects'].length > 0">
         <h2 class="section-header">
             <span class="fa fa-calendar-plus-o"></span>
             Projects
         </h2>
-        <div class="data-attribute-holder" style="height: auto" *ngIf="linkedInAvailable">
+        <div class="data-attribute-holder" style="height: auto">
             <span *ngFor="let project of profile['socialMedia']['linkedIn']['projects']">{{project.project}}</span>
         </div>
     </div>
     <!--languages-->
-    <div class="col-md-6">
+    <div class="col-md-6" *ngIf="linkedInAvailable && profile['socialMedia']['linkedIn']['languages'].length > 0">
         <h2 class="section-header">
             <span class="fa fa-language"></span>
             &nbsp;&nbsp;Languages
         </h2>
-        <div class="data-attribute-holder" *ngIf="linkedInAvailable">
+        <div class="data-attribute-holder">
             <span *ngFor="let language of profile['socialMedia']['linkedIn']['languages']">{{language}}</span>
         </div>
     </div>
 
     <!--friends-->
-    <div class="col-md-12">
+    <div class="col-md-12" *ngIf="facebookAvailable && profile['socialMedia']['facebook']['friends'].length > 0">
         <h2 class="section-header">
             <span class="fa fa-link"></span>
             &nbsp;&nbsp;Connections
         </h2>
 
-        <div class="connection-graph" *ngIf="facebookAvailable">
-            <img *ngIf="facebookAvailable" class="connection center-circle" [src]="profile['socialMedia']['facebook']['profile_picture']" alt="">
-            <img *ngIf="facebookAvailable" class="connection north-circle" [src]="profile['socialMedia']['facebook']['friends'][0]" alt="">
-            <img *ngIf="facebookAvailable" class="connection north-east-circle" [src]="profile['socialMedia']['facebook']['friends'][1]" alt="">
-            <img *ngIf="facebookAvailable" class="connection east-circle" [src]="profile['socialMedia']['facebook']['friends'][2]" alt="">
-            <img *ngIf="facebookAvailable" class="connection east-south-circle" [src]="profile['socialMedia']['facebook']['friends'][3]" alt="">
-            <img *ngIf="facebookAvailable" class="connection south-circle" [src]="profile['socialMedia']['facebook']['friends'][4]" alt="">
-            <img *ngIf="facebookAvailable" class="connection south-west-circle" [src]="profile['socialMedia']['facebook']['friends'][5]" alt="">
-            <img *ngIf="facebookAvailable" class="connection west-circle" [src]="profile['socialMedia']['facebook']['friends'][6]" alt="">
-            <img *ngIf="facebookAvailable" class="connection west-north-circle" [src]="profile['socialMedia']['facebook']['friends'][7]" alt="">
+        <div class="connection-graph">
+            <img  class="connection center-circle" [src]="profile['socialMedia']['facebook']['profile_picture']" alt="">
+            <img  class="connection north-circle" [src]="profile['socialMedia']['facebook']['friends'][0]" alt="">
+            <img  class="connection north-east-circle" [src]="profile['socialMedia']['facebook']['friends'][1]" alt="">
+            <img  class="connection east-circle" [src]="profile['socialMedia']['facebook']['friends'][2]" alt="">
+            <img  class="connection east-south-circle" [src]="profile['socialMedia']['facebook']['friends'][3]" alt="">
+            <img  class="connection south-circle" [src]="profile['socialMedia']['facebook']['friends'][4]" alt="">
+            <img  class="connection south-west-circle" [src]="profile['socialMedia']['facebook']['friends'][5]" alt="">
+            <img  class="connection west-circle" [src]="profile['socialMedia']['facebook']['friends'][6]" alt="">
+            <img  class="connection west-north-circle" [src]="profile['socialMedia']['facebook']['friends'][7]" alt="">
             <svg class="connection-lines">
                 <!--north-->
                 <line x1="430" y1="20" x2="430" y2="120" style="stroke:rgb(0,255,0);stroke-width:2"></line>

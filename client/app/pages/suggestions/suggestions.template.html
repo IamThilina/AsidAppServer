@@ -4,11 +4,11 @@
             <div class="suggested-profile-container">
                 <img class="profile-picture-holder" *ngIf="profile['everything']['socialMedia']['facebook']" [src]="profile['everything']['socialMedia']['facebook']['profile_picture']" alt="" width="200" height="200">
                 <img class="profile-picture-holder" *ngIf="!profile['everything']['socialMedia']['facebook'] && profile['everything']['socialMedia']['linkedIn']" [src]="profile['everything']['socialMedia']['linkedIn']['profile_picture']" alt="" width="200" height="200">
-                <div class="input-group hint-container">
+                <div class="input-group hint-container" *ngIf="profile['everything']['Aggregated Names']">
 								<span class="input-group-addon">
 									<i class="material-icons form-icons">person</i>
 								</span>
-                    <p *ngIf="profile['everything']['Aggregated Names']">{{profile['everything']["Aggregated Names"][0]}}</p>
+                    <p>{{profile['everything']["Aggregated Names"][0]}}</p>
                 </div>
                 <!--city-->
                 <div class="input-group hint-container" *ngIf="profile['everything']['government'] && profile['everything']['government']['NIC']">
@@ -18,18 +18,18 @@
                     <p>{{profile['everything']["government"]["NIC data"]["District"]}}</p>
                 </div>
                 <!--school-->
-                <div class="input-group hint-container" style="margin-top: -10px">
+                <div class="input-group hint-container" style="margin-top: -10px" *ngIf="profile['everything']['Aggregated Education'] && profile['everything']['Aggregated Education'][0]">
 								<span class="input-group-addon">
 									<i class="material-icons form-icons">school</i>
 								</span>
-                    <p *ngIf="profile['everything']['Aggregated Education'] && profile['everything']['Aggregated Education'][0]">{{profile['everything']['Aggregated Education'][0]['Institute']}}</p>
+                    <p>{{profile['everything']['Aggregated Education'][0]['Institute']}}</p>
                 </div>
                 <!--work-place-->
-                <div class="input-group hint-container work-place">
+                <div class="input-group hint-container work-place" *ngIf="profile['everything']['Aggregated Work'] && profile['everything']['Aggregated Work'][0]">
 								<span class="input-group-addon">
 									<i class="material-icons form-icons">work</i>
 								</span>
-                    <p *ngIf="profile['everything']['Aggregated Work'] && profile['everything']['Aggregated Work'][0]">{{profile['everything']['Aggregated Work'][0]['Company']}}</p>
+                    <p>{{profile['everything']['Aggregated Work'][0]['Company']}}</p>
                 </div>
                 <a class="btn btn-primary people-btn" routerLink="/profile/{{name}}/{{i+1}}">Read More</a>
             </div>
