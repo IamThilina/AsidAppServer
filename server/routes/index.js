@@ -425,7 +425,7 @@ router.post('/search', function(req, res, next) {
                 var options = {
                     host: 'localhost',
                     port: 8080,
-                    path: '/fypasid/rest/UserService/user?town=colomb0&choice=g&name=' + req.body.user.name,
+                    path: '/FYPAsid/rest/UserService/user?name=' + req.body.user.name,
                     method: 'GET'
                 };
 		console.log("Calling Gov API");
@@ -479,6 +479,7 @@ router.post('/search', function(req, res, next) {
             res.send(err);
 
 	console.log("Calling FaceRecognition API");
+	console.log(results);
         request({  // calling face recognition system
             method: 'POST',
             url: "http://localhost:4000/facerecognizer/merge",
@@ -495,10 +496,11 @@ router.post('/search', function(req, res, next) {
             }
             else{
 		console.log("Recieved FaceRecognition Results");
+		console.log(JSON.stringify(mergedProfiles.body));
 		console.log("Calling Aggregation API");
                 request({  // calling aggregation system
             		method: 'POST',
-                    url: "http://localhost:8080/fypasid/rest/UserService/user/aggregation",
+                    url: "http://localhost:8080/FYPAsid/rest/UserService/user/aggregation",
                     body: mergedProfiles.body,
                     json: true,
                     headers: {
@@ -508,7 +510,7 @@ router.post('/search', function(req, res, next) {
    	             }, (error, aggregatedProfiles, body) => {
                   if (error){
 			//console.log(aggregatedProfiles.body);
-                    console.log("ERROR ATAGGREGATION");
+                    console.log("ERROR AT AGGREGATION");
                     console.log(error);
                   } else{
 			console.log("Recieved Aggregation Results");
@@ -520,10 +522,10 @@ router.post('/search', function(req, res, next) {
 		      params.name = req.body.user.name;
                       params.profiles = aggregatedProfiles.body;
 
-			console.log(params);
+			console.log(aggregatedProfiles.body);
                       request({  // calling suggesting system
                           method: 'POST',
-                          url: "http://localhost:8080/fypasid/rest/UserService/suggestion",
+                          url: "http://localhost:8080/FYPAsid/rest/UserService/suggestion",
                           body: params,
                           json: true,
                           headers: {
