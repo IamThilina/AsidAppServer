@@ -48,9 +48,9 @@ class AuthService {
         return new Promise((fulfill, reject) => {
             mysqlConnectionPool.getConnection(function (err, connection) {
                 let sql = 'INSERT INTO users' +
-                    '  ( username, password, role)' +
-                    ' VALUES (?, ?, ?)';
-                let values = [user.username, passwordHash.generate(user.password), user.role];
+                    '  ( username, password, role, name)' +
+                    ' VALUES (?, ?, ?, ?)';
+                let values = [user.username, passwordHash.generate(user.password), user.role, user.role + " Department"];
                 connection.query(sql, values, function (err, rows, fields) {
                     if (err)
                         reject(err);

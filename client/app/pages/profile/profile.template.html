@@ -9,7 +9,7 @@
         </div>
     </div>
     <div class="col-md-6 text-left name-holder">
-        <h2>{{profile["Aggregated Names"][0]}}</h2>
+        <h2 *ngIf="profile['Aggregated Names']">{{profile["Aggregated Names"][0]}}</h2>
         <div data-toggle="collapse" data-target="#unmerged-names" class="unmerged"><i class="material-icons">add_box</i></div>
         <p id="unmerged-names" class="collapse">
                 <span *ngIf="nicAvailable">{{profile["government"]["NIC data"]["Name"]}}</span>
