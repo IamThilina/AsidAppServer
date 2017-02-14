@@ -16,6 +16,8 @@ import { DataStoreService } from "../../services/datastore.service";
 
 export class SearchComponent {
 
+    hourGlass: boolean = false;
+
     constructor(
         private searchService: SearchService,
         private datastoreService: DataStoreService,
@@ -23,6 +25,7 @@ export class SearchComponent {
     ) {}
 
     onSubmit(form: any): void{
+        this.hourGlass = true;
         this.searchService.search(form).then(
             response => {
                 this.datastoreService.changeProfiles(response.final);

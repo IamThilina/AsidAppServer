@@ -24,3 +24,15 @@
     top: 10%;
     margin: 0;
 }
+.progress-container{
+    position: absolute;
+    top: 0;
+    width: 98%;
+    height: 650px;
+    background: rgba(0, 0, 0, 0.68);
+    z-index: 100;
+}
+
+.progress-container>img{
+    padding: 20% 45%;
+}
