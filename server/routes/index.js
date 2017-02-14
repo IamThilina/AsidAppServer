@@ -514,15 +514,18 @@ router.post('/search', function(req, res, next) {
                     console.log(error);
                   } else{
 			console.log("Recieved Aggregation Results");
+			console.log(JSON.stringify(aggregatedProfiles.body));
 		      console.log("Calling Suggestion API");
                       const params = {};
                       params.school = req.body.user.school;
                       params.workPlace = req.body.user.workPlace;
                       params.city = req.body.user.city;
 		      params.name = req.body.user.name;
-                      params.profiles = aggregatedProfiles.body;
+		      params.role = req.decoded.role;
+		      //console.log(params);
+                      params.profiles = aggregatedProfiles.body.profiles;
+		      console.log(JSON.stringify(params));
 
-			console.log(aggregatedProfiles.body);
                       request({  // calling suggesting system
                           method: 'POST',
                           url: "http://localhost:8080/FYPAsid/rest/UserService/suggestion",
