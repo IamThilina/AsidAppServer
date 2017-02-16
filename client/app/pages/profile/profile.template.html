@@ -9,12 +9,12 @@
         </div>
     </div>
     <div class="col-md-6 text-left name-holder">
-        <h2 *ngIf="profile['Aggregated Names']">{{profile["Aggregated Names"][0]}}</h2>
+        <h2 *ngIf="profile['Aggregated Names']" style="text-transform: capitalize">{{profile["Aggregated Names"]}}</h2>
         <div data-toggle="collapse" data-target="#unmerged-names" class="unmerged"><i class="material-icons">add_box</i></div>
         <p id="unmerged-names" class="collapse">
-                <span *ngIf="nicAvailable">{{profile["government"]["NIC data"]["Name"]}}</span>
-                <span *ngIf="facebookAvailable">{{profile['socialMedia']['facebook']["name"]}}</span>
-                <span *ngIf="linkedInAvailable">{{profile['socialMedia']['linkedIn']["name"]}}</span>
+                <span *ngIf="nicAvailable">From NIC : {{profile["government"]["NIC data"]["FamilyName"]}}&nbsp;&nbsp;{{profile["government"]["NIC data"]["Name"]}}&nbsp;&nbsp;{{profile["government"]["NIC data"]["Surname"]}}</span>
+                <span *ngIf="facebookAvailable">FROM Facebook : {{profile['socialMedia']['facebook']["name"]}}</span>
+                <span *ngIf="linkedInAvailable">From LinkedIn : {{profile['socialMedia']['linkedIn']["name"]}}</span>
         </p>
     </div>
 
@@ -31,7 +31,7 @@
             </div>
             <div class="data-attribute-holder">
                 <h4>Date Of Birth</h4>
-                <span>{{profile["government"]["NIC data"]["Date Of birth"] | date:'mediumDate'}}</span>
+                <span>{{profile["government"]["NIC data"]["Date of birth"] | date:'mediumDate'}}</span>
             </div>
             <div class="data-attribute-holder">
                 <h4>District</h4>
