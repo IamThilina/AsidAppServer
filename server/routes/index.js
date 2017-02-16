@@ -75,7 +75,7 @@ console.log(decoded.role);
 });
 
 /* GET Merged n Aggregated SocialMedia Profiles*/
-router.post('/search', function(req, res, next) {
+router.post('/search-social', function(req, res, next) {
     async.parallel({
         socialMedia: function(callback) {
             var options = {
