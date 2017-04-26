@@ -14,7 +14,7 @@ export class SearchService {
 
     search(user: FormData): Promise<any> {
         const headers = new Headers({'Content-Type': 'application/json'});
-        const url = `${this.API_URL}/search-social`;
+        const url = `${this.API_URL}/search`;
         return new Promise((resolve, reject) => {
             //noinspection TypeScriptUnresolvedFunction
             this.http
